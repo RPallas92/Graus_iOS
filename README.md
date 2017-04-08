@@ -1,2 +1,2 @@
 # Graus_iOS
-App an agenda for the town of Graus
+App and agenda for the town of Graus
