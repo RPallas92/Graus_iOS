@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		21C5258B58BB9A38F21C3E48 /* Pods_GrausAppUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A9E3A6618217695AD123FAA /* Pods_GrausAppUITests.framework */; };
 		96B0C21D1E99452E004A3817 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96B0C21C1E99452E004A3817 /* AppDelegate.swift */; };
-		96B0C21F1E99452E004A3817 /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96B0C21E1E99452E004A3817 /* FirstViewController.swift */; };
+		96B0C21F1E99452E004A3817 /* AgendaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96B0C21E1E99452E004A3817 /* AgendaViewController.swift */; };
 		96B0C2211E99452E004A3817 /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96B0C2201E99452E004A3817 /* SecondViewController.swift */; };
 		96B0C2241E99452E004A3817 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 96B0C2221E99452E004A3817 /* Main.storyboard */; };
 		96B0C2261E99452E004A3817 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 96B0C2251E99452E004A3817 /* Assets.xcassets */; };
@@ -44,7 +44,7 @@
 		8AB719885537CACC74F73FA4 /* Pods-GrausAppTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GrausAppTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-GrausAppTests/Pods-GrausAppTests.debug.xcconfig"; sourceTree = "<group>"; };
 		96B0C2191E99452E004A3817 /* GrausApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GrausApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		96B0C21C1E99452E004A3817 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		96B0C21E1E99452E004A3817 /* FirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
+		96B0C21E1E99452E004A3817 /* AgendaViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgendaViewController.swift; sourceTree = "<group>"; };
 		96B0C2201E99452E004A3817 /* SecondViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondViewController.swift; sourceTree = "<group>"; };
 		96B0C2231E99452E004A3817 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		96B0C2251E99452E004A3817 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -130,7 +130,7 @@
 			isa = PBXGroup;
 			children = (
 				96B0C21C1E99452E004A3817 /* AppDelegate.swift */,
-				96B0C21E1E99452E004A3817 /* FirstViewController.swift */,
+				96B0C21E1E99452E004A3817 /* AgendaViewController.swift */,
 				96B0C2201E99452E004A3817 /* SecondViewController.swift */,
 				96B0C2221E99452E004A3817 /* Main.storyboard */,
 				96B0C2251E99452E004A3817 /* Assets.xcassets */,
@@ -451,7 +451,7 @@
 			files = (
 				96B0C2211E99452E004A3817 /* SecondViewController.swift in Sources */,
 				96B0C21D1E99452E004A3817 /* AppDelegate.swift in Sources */,
-				96B0C21F1E99452E004A3817 /* FirstViewController.swift in Sources */,
+				96B0C21F1E99452E004A3817 /* AgendaViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -704,6 +704,7 @@
 				96B0C2451E99452F004A3817 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		96B0C2461E99452F004A3817 /* Build configuration list for PBXNativeTarget "GrausAppTests" */ = {
 			isa = XCConfigurationList;
@@ -712,6 +713,7 @@
 				96B0C2481E99452F004A3817 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		96B0C2491E99452F004A3817 /* Build configuration list for PBXNativeTarget "GrausAppUITests" */ = {
 			isa = XCConfigurationList;
@@ -720,6 +722,7 @@
 				96B0C24B1E99452F004A3817 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
