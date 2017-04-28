@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		21C5258B58BB9A38F21C3E48 /* Pods_GrausAppUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A9E3A6618217695AD123FAA /* Pods_GrausAppUITests.framework */; };
+		419E07AF1EB3CC120053D793 /* AgendaEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 419E07AE1EB3CC120053D793 /* AgendaEvent.swift */; };
+		419E07B01EB3CC120053D793 /* AgendaEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 419E07AE1EB3CC120053D793 /* AgendaEvent.swift */; };
+		419E07B11EB3CC120053D793 /* AgendaEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 419E07AE1EB3CC120053D793 /* AgendaEvent.swift */; };
 		96B0C21D1E99452E004A3817 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96B0C21C1E99452E004A3817 /* AppDelegate.swift */; };
 		96B0C21F1E99452E004A3817 /* AgendaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96B0C21E1E99452E004A3817 /* AgendaViewController.swift */; };
 		96B0C2211E99452E004A3817 /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96B0C2201E99452E004A3817 /* SecondViewController.swift */; };
@@ -40,6 +43,7 @@
 /* Begin PBXFileReference section */
 		1A9E3A6618217695AD123FAA /* Pods_GrausAppUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GrausAppUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2C0E0A4CCC185419DBEC973A /* Pods-GrausAppTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GrausAppTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-GrausAppTests/Pods-GrausAppTests.release.xcconfig"; sourceTree = "<group>"; };
+		419E07AE1EB3CC120053D793 /* AgendaEvent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AgendaEvent.swift; sourceTree = "<group>"; };
 		6B42EB2531ED1FCD883EA6FE /* Pods_GrausApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GrausApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8AB719885537CACC74F73FA4 /* Pods-GrausAppTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GrausAppTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-GrausAppTests/Pods-GrausAppTests.debug.xcconfig"; sourceTree = "<group>"; };
 		96B0C2191E99452E004A3817 /* GrausApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GrausApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -104,6 +108,28 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		419E07AB1EB3CBFA0053D793 /* data */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = data;
+			sourceTree = "<group>";
+		};
+		419E07AC1EB3CBFA0053D793 /* domain */ = {
+			isa = PBXGroup;
+			children = (
+				419E07AE1EB3CC120053D793 /* AgendaEvent.swift */,
+			);
+			path = domain;
+			sourceTree = "<group>";
+		};
+		419E07AD1EB3CBFA0053D793 /* presentation */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = presentation;
+			sourceTree = "<group>";
+		};
 		96B0C2101E99452E004A3817 = {
 			isa = PBXGroup;
 			children = (
@@ -129,6 +155,9 @@
 		96B0C21B1E99452E004A3817 /* GrausApp */ = {
 			isa = PBXGroup;
 			children = (
+				419E07AB1EB3CBFA0053D793 /* data */,
+				419E07AC1EB3CBFA0053D793 /* domain */,
+				419E07AD1EB3CBFA0053D793 /* presentation */,
 				96B0C21C1E99452E004A3817 /* AppDelegate.swift */,
 				96B0C21E1E99452E004A3817 /* AgendaViewController.swift */,
 				96B0C2201E99452E004A3817 /* SecondViewController.swift */,
@@ -394,7 +423,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		94E02D2A17646733097FDE48 /* [CP] Check Pods Manifest.lock */ = {
@@ -409,7 +438,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		D4141ABD0043746136DFBE72 /* [CP] Copy Pods Resources */ = {
@@ -439,7 +468,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -451,6 +480,7 @@
 			files = (
 				96B0C2211E99452E004A3817 /* SecondViewController.swift in Sources */,
 				96B0C21D1E99452E004A3817 /* AppDelegate.swift in Sources */,
+				419E07AF1EB3CC120053D793 /* AgendaEvent.swift in Sources */,
 				96B0C21F1E99452E004A3817 /* AgendaViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -459,6 +489,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				419E07B01EB3CC120053D793 /* AgendaEvent.swift in Sources */,
 				96B0C2341E99452F004A3817 /* GrausAppTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -467,6 +498,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				419E07B11EB3CC120053D793 /* AgendaEvent.swift in Sources */,
 				96B0C23F1E99452F004A3817 /* GrausAppUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

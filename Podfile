@@ -7,6 +7,10 @@ target 'GrausApp' do
 
   # Pods for GrausApp
   pod 'ReactiveSwift', '~> 1.1'
+  pod 'Moya/ReactiveSwift'
+  pod 'ReactiveCocoa', '~> 5.0.0'
+  pod 'Moya-ModelMapper/ReactiveCocoa', '4.0.0'
+
 
 
 
