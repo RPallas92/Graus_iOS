@@ -274,6 +274,7 @@
 				TargetAttributes = {
 					96B0C2181E99452E004A3817 = {
 						CreatedOnToolsVersion = 8.3;
+						DevelopmentTeam = YXMLS385BH;
 						ProvisioningStyle = Automatic;
 					};
 					96B0C22E1E99452F004A3817 = {
@@ -638,7 +639,9 @@
 			baseConfigurationReference = EE27B2BF8317CC3910DC4913 /* Pods-GrausApp.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = YXMLS385BH;
 				INFOPLIST_FILE = GrausApp/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = io.github.rpallas92.GrausApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -651,7 +654,9 @@
 			baseConfigurationReference = EE338E4CAEC9603B3F55C3E8 /* Pods-GrausApp.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = YXMLS385BH;
 				INFOPLIST_FILE = GrausApp/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = io.github.rpallas92.GrausApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";

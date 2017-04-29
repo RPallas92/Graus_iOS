@@ -9,7 +9,7 @@
 import Foundation
 import Mapper
 
-//TODO Anemic model 
+//TODO Anemic model
 
 struct AgendaEvent : Mappable {
     let eventId: Int
@@ -32,7 +32,22 @@ struct AgendaEvent : Mappable {
         try lon = map.from("coordenadaY")
         try imageUrl = map.from("imagen")
         try imageThumbnailUrl = map.from("thumbnail")
-        try date = map.from("fecha", ISO8601DateTransform)
+        try date = map.from("fecha", transformation: parseDate)
     }
     
+}
+
+private func parseDate(object: Any?) throws -> Date {
+    guard let dateString = object as? String else {
+        throw MapperError.customError(field: nil, message: "Date is not an string")
+    }
+    
+    let dateFormatter = DateFormatter()
+    dateFormatter.locale = Locale.current
+    dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+    if let date = dateFormatter.date(from: dateString) {
+        return date
+    }
+    
+    throw MapperError.customError(field: nil, message: "Couldn't parse the date!")
 }
