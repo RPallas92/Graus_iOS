@@ -7,11 +7,8 @@
 //
 
 import Foundation
-import Mapper
 
-//TODO Anemic model
-
-struct AgendaEvent : Mappable {
+struct AgendaEvent {
     let eventId: Int
     let name: String
     let city: String
@@ -23,31 +20,20 @@ struct AgendaEvent : Mappable {
     let date: Date
     
     
-    init(map: Mapper) throws {
-        try eventId = map.from("idEvento")
-        try name = map.from("nombre")
-        try city = map.from("lugar")
-        try description = map.from("texto")
-        try lat = map.from("coordenadaX")
-        try lon = map.from("coordenadaY")
-        try imageUrl = map.from("imagen")
-        try imageThumbnailUrl = map.from("thumbnail")
-        try date = map.from("fecha", transformation: parseDate)
+    init(eventId:Int, name: String, city: String, description: String, lat: Float, lon: Float, imageUrl:String,
+         imageThumbnailUrl:String, date: Date) {
+
+        self.eventId = eventId
+        self.name = name
+        self.city = city
+        self.description = description
+        self.lat = lat
+        self.lon = lon
+        self.imageUrl = imageUrl
+        self.imageThumbnailUrl = imageThumbnailUrl
+        self.date = date
     }
     
 }
 
-private func parseDate(object: Any?) throws -> Date {
-    guard let dateString = object as? String else {
-        throw MapperError.customError(field: nil, message: "Date is not an string")
-    }
-    
-    let dateFormatter = DateFormatter()
-    dateFormatter.locale = Locale.current
-    dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
-    if let date = dateFormatter.date(from: dateString) {
-        return date
-    }
-    
-    throw MapperError.customError(field: nil, message: "Couldn't parse the date!")
-}
+
