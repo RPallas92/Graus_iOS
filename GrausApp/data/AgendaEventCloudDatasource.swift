@@ -18,25 +18,47 @@ class AgendaEventCloudDatasource {
 
 extension URLSession {
     func loadAgendaEvents() -> Observable<LoadAgendaEventsResponse> {
+        //TODO one loaddays then map loadafenda for each day and then concat or traverse
+        return loadDaysWithEvents()
+            .map { daysResponse in
+                switch daysResponse {
+                case .success(let days):
+                    
+                    let loadEventsForDays = days.map { day in
+                       return self.loadAgendaEvents(day: day)
+                    }
+                    
+                    
+                    let hack = Observable.concat(loadEventsForDays)
+                    let result = LoadAgendaEventsResponse.success(hack)
+                    /*hack.map { resultado in {
+                        resultado
+                        }*/
+                    return result
+                case .failure(let error):
+                    return
+                }
+            }
         
-        let url = URL(string: "http://ejeadefiestas.ejeadigital.com/index.php/api/fiestas/dias_con_eventos/id/200/format/json")!
-        return self
-            .rx.response(request: URLRequest(url: url))
-            .retry(3)
-            .map(AgendaEvent.parse)
     }
     
     func loadDaysWithEvents() -> Observable<LoadDaysWithEventsResponse> {
         
         let url = URL(string: "http://ejeadefiestas.ejeadigital.com/index.php/api/fiestas/dias_con_eventos/id/200/format/json")!
-
-       return self
+        
+        return self
             .rx.response(request: URLRequest(url: url))
             .retry(3)
             .map(Day.parse)
     }
     
-    /*func loadAgendaEvents(for: Day) -> Observable<LoadAgendaEventsResponse>{
+    func loadAgendaEvents(day: Day) -> Observable<LoadAgendaEventsResponse>{
+        let url = URL(string: "http://ejeadefiestas.ejeadigital.com/index.php/api/eventos/eventos_by_dia/id/200/dia/\(day.toString())/format/json")!
         
-    }*/
+        return self
+            .rx.response(request: URLRequest(url: url))
+            .retry(3)
+            .map(AgendaEvent.parse)
+        
+    }
 }

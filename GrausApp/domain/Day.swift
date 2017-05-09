@@ -9,3 +9,11 @@
 import Foundation
 
 typealias Day = Date
+
+extension Day {
+    func toString() -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd"
+        return dateFormatter.string(from: self)
+    }
+}
