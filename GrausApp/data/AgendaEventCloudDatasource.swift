@@ -24,17 +24,25 @@ extension URLSession {
                 switch daysResponse {
                 case .success(let days):
                     
-                    let loadEventsForDays = days.map { day in
+                    let loadEventsForDayStreams = days.map { day in
                        return self.loadAgendaEvents(day: day)
                     }
                     
+                    let loadEventsForDaysStream = Observable.combineLatest(loadEventsForDayStreams)
                     
-                    let hack = Observable.concat(loadEventsForDays)
-                    let result = LoadAgendaEventsResponse.success(hack)
-                    /*hack.map { resultado in {
-                        resultado
-                        }*/
+
+                    let result = loadEventsForDaysStream.map { hack2 in
+                        hack2.reduce(hack2[0], { previous, current in
+                            switch previous {
+                            case .success(let events){
+                                
+                            }
+                                
+                            }
+                            })
+                    }
                     return result
+                
                 case .failure(let error):
                     return
                 }
@@ -59,6 +67,7 @@ extension URLSession {
             .rx.response(request: URLRequest(url: url))
             .retry(3)
             .map(AgendaEvent.parse)
+            
         
     }
 }

@@ -8,7 +8,25 @@
 
 import Foundation
 
-enum Result<T, E: Error> {
+enum Result<T:Sequence, E: Error> {
     case success(T)
     case failure(E)
+}
+
+extension Result {
+    
+    func concat(otherResult: Result) -> Result{
+        
+        switch self {
+        case .success(let t):
+            switch otherResult {
+            case .success(let otherT):
+                return Result.success(t + otherT)
+            case .failure( _):
+                return otherResult
+            }
+        case .failure( _):
+            return self
+        }
+    }
 }
