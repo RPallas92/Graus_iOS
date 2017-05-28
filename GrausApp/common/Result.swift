@@ -8,14 +8,14 @@
 
 import Foundation
 
-enum Result<T:Sequence, E: Error> {
+enum Result<T, E: Error> {
     case success(T)
     case failure(E)
 }
 
-extension Result {
+extension Result where T : Array<Any> {
     
-    func concat(otherResult: Result) -> Result{
+    func hackconcat(otherResult: Result) -> Result{
         
         switch self {
         case .success(let t):
@@ -28,5 +28,11 @@ extension Result {
         case .failure( _):
             return self
         }
+    }
+}
+
+extension Result {
+    func getHack() -> String {
+        return "HAck"
     }
 }

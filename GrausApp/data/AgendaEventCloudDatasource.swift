@@ -19,8 +19,10 @@ class AgendaEventCloudDatasource {
 extension URLSession {
     func loadAgendaEvents() -> Observable<LoadAgendaEventsResponse> {
         //TODO one loaddays then map loadafenda for each day and then concat or traverse
+        
+        
         return loadDaysWithEvents()
-            .map { daysResponse in
+            .flatMap { daysResponse -> Observable<LoadAgendaEventsResponse> in
                 switch daysResponse {
                 case .success(let days):
                     
@@ -28,23 +30,24 @@ extension URLSession {
                        return self.loadAgendaEvents(day: day)
                     }
                     
-                    let loadEventsForDaysStream = Observable.combineLatest(loadEventsForDayStreams)
                     
-
-                    let result = loadEventsForDaysStream.map { hack2 in
-                        hack2.reduce(hack2[0], { previous, current in
-                            switch previous {
-                            case .success(let events){
-                                
-                            }
-                                
-                            }
-                            })
-                    }
-                    return result
+                    let loadEventsForDaysStream = loadEventsForDayStreams.reduce(Observable<LoadAgendaEventsResponse>.empty(), { x,y in
+                        x.concat(y)
+                    })
+                    //let loadEventsForDaysStream = Observable.combineLatest(loadEventsForDayStreams)
+                    
+                    
+                
+                    /*let result = loadEventsForDaysStream.reduce(LoadAgendaEventsResponse.success([]), accumulator: { (acc:LoadAgendaEventsResponse, xs:[LoadAgendaEventsResponse]) -> LoadAgendaEventsResponse in
+                        acc.hackconcat(otherResult: xs[0])
+                    })
+                    return result.con*/
+                    
+                    return loadEventsForDaysStream
                 
                 case .failure(let error):
-                    return
+
+                    return Observable.just(LoadAgendaEventsResponse.failure(error))
                 }
             }
         
