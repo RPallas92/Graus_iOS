@@ -13,26 +13,3 @@ enum Result<T, E: Error> {
     case failure(E)
 }
 
-extension Result where T : Array<Any> {
-    
-    func hackconcat(otherResult: Result) -> Result{
-        
-        switch self {
-        case .success(let t):
-            switch otherResult {
-            case .success(let otherT):
-                return Result.success(t + otherT)
-            case .failure( _):
-                return otherResult
-            }
-        case .failure( _):
-            return self
-        }
-    }
-}
-
-extension Result {
-    func getHack() -> String {
-        return "HAck"
-    }
-}

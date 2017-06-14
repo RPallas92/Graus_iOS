@@ -14,6 +14,10 @@ class AgendaEventCloudDatasource {
     func loadDaysWithEvents() -> Observable<LoadDaysWithEventsResponse> {
         return URLSession.shared.loadDaysWithEvents()
     }
+    
+    func loadAgendaEvents() -> Observable<LoadAgendaEventsResponse> {
+        return URLSession.shared.loadAgendaEvents()
+    }
 }
 
 extension URLSession {
@@ -31,10 +35,12 @@ extension URLSession {
                     }
                     
                     
-                    let loadEventsForDaysStream = loadEventsForDayStreams.reduce(Observable<LoadAgendaEventsResponse>.empty(), { x,y in
+                    /*let loadEventsForDaysStream = loadEventsForDayStreams.reduce(Observable<LoadAgendaEventsResponse>.empty(), { x,y in
                         x.concat(y)
-                    })
-                    //let loadEventsForDaysStream = Observable.combineLatest(loadEventsForDayStreams)
+                    })*/
+                    
+                    
+                    let loadEventsForDaysStream = Observable.merge(loadEventsForDayStreams)
                     
                     
                 
