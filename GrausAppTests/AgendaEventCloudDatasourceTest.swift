@@ -44,19 +44,19 @@ class AgendaEventCloudDatasourceTest: XCTestCase {
         let disposeBag = DisposeBag()
         
         let agendaEventCloudDataSource = AgendaEventCloudDatasource()
-        let day = Date.init()
+        let dayWithEvents = Date.init(timeIntervalSinceReferenceDate: 518738400.0)
         
         let completed = self.expectation(description: "Events retrieved for day")
-        let observable: Observable<LoadAgendaEventsResponse> = agendaEventCloudDataSource.loadAgendaEvents(day: day)
+        let observable: Observable<LoadAgendaEventsResponse> = agendaEventCloudDataSource.loadAgendaEvents(day: dayWithEvents)
         
-        observable.subscribe(onNext: { days in
+        observable.subscribe(onNext: { events in
             
             completed.fulfill()
         }).addDisposableTo(disposeBag)
         
         
         
-        self.waitForExpectations(timeout: 180, handler: nil)
+        self.waitForExpectations(timeout: 10, handler: nil)
     }
     
     

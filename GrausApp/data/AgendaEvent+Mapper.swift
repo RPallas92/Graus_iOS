@@ -32,21 +32,27 @@ extension AgendaEvent {
             throw SystemError("Can't find items")
         }
         return try items.map { item in
-            guard let eventId = item["idEvento"] as? Int,
+            guard let eventId = item["idEvento"] as? String,
                 let name = item["nombre"] as? String,
                 let city = item["lugar"] as? String,
                 let description = item["texto"] as? String,
-                let lat = item["coordenadaX"] as? Float,
-                let lon = item["coordenadaY"] as? Float,
+                let lat = item["coordenadaX"] as? String,
+                let lon = item["coordenadaY"] as? String,
                 let imageUrl = item["imagen"] as? String,
                 let imageThumbnailUrl = item["thumbnail"] as? String,
-                let date = item["fecha"] as? String else {
+                let date = item["fecha"] as? String,
+                let parsedLat = Float.init(lat),
+                let parsedLon = Float.init(lon)
+
+            else {
                     throw SystemError("Can't parse AgendaEvent")
             }
             
             let parsedDate = try parseDate(object: date)
+
             
-            return AgendaEvent(eventId: eventId, name: name, city: city, description: description, lat: lat, lon: lon, imageUrl: imageUrl, imageThumbnailUrl: imageThumbnailUrl, date: parsedDate)
+            
+            return AgendaEvent(eventId: eventId, name: name, city: city, description: description, lat: parsedLat, lon: parsedLon, imageUrl: imageUrl, imageThumbnailUrl: imageThumbnailUrl, date: parsedDate)
         }
     }
     

@@ -9,7 +9,7 @@
 import Foundation
 
 struct AgendaEvent {
-    let eventId: Int
+    let eventId: String
     let name: String
     let city: String
     let description: String
@@ -20,7 +20,7 @@ struct AgendaEvent {
     let date: Date
     
     
-    init(eventId:Int, name: String, city: String, description: String, lat: Float, lon: Float, imageUrl:String,
+    init(eventId:String, name: String, city: String, description: String, lat: Float, lon: Float, imageUrl:String,
          imageThumbnailUrl:String, date: Date) {
 
         self.eventId = eventId
