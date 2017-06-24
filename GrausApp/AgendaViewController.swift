@@ -7,6 +7,9 @@
 //
 
 import UIKit
+import RxSwift
+import RxCocoa
+import RxFeedback
 
 
 fileprivate struct State {
@@ -52,18 +55,66 @@ extension State {
 
 class AgendaViewController: UIViewController {
     
+    @IBOutlet var agendaEventsTableView: UITableView!
     
-
+    private let disposeBag = DisposeBag()
+    
+    private let agendaDataSource = AgendaEventCloudDatasource()
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        
+        
+        
+        agendaEventsTableView.register(UITableViewCell.self, forCellReuseIdentifier: "event")
+        
+        
+        func configureAgendAeventCell(_: Int, agendaEvent: AgendaEvent, cell: UITableViewCell){
+            cell.textLabel?.text = agendaEvent.name
+            cell.detailTextLabel?.text = agendaEvent.date.description
+        }
+        
+        let triggerLoadData: (Driver<State>) -> Driver<Event> = { state in
+            return state.flatMapLatest { state -> Driver<Event> in
+                if state.shouldLoadData {
+                    return Driver.empty()
+                }
+                
+                return Driver.just(Event.startLoadingEvents())
+            }
+        }
+        
+        let bindUI: (Driver<State>) -> Driver<Event> = UI.bind() { state in (
+            [
+                state.map { $0.results }.drive(self.agendaEventsTableView.rx.items(cellIdentifier: "event"))(configureAgendAeventCell),
+                
+                ]
+            ,[
+                triggerLoadData(state)
+            ]
+            )}
+        
+        let dayWithEvents = Date.init(timeIntervalSinceReferenceDate: 518738400.0)
+        
+        
+        Driver.system(
+            initialState: State.empty,
+            reduce: State.reduce,
+            feedback:
+            // UI, user feedback
+            bindUI,
+            // NoUI, automatic feedback
+            react(query: { $0.shouldLoadData }, effects: { resource in
+                return self.agendaDataSource.loadAgendaEvents(day: dayWithEvents)
+                    .asDriver(onErrorJustReturn: .failure(.offline))
+                    .map(Event.response)
+            })
+            )
+            .drive()
+            .disposed(by: disposeBag)
+        
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-
-
+    
 }
 

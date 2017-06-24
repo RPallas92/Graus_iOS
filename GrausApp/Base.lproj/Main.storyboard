@@ -42,7 +42,7 @@
                                 <rect key="frame" x="0.0" y="28" width="375" height="74"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="roZ-nL-jGY" id="KOs-CN-HCE">
-                                    <rect key="frame" x="0.0" y="0.0" width="342" height="73.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="342" height="74"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="WWw-If-Bpf">
@@ -109,7 +109,7 @@ Title 2</string>
                                 <rect key="frame" x="0.0" y="102" width="375" height="504"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="gY2-Gd-dFg" id="zT2-5F-Nw3">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="503.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="504"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="7" translatesAutoresizingMaskIntoConstraints="NO" id="wsZ-ke-cba">
@@ -143,6 +143,9 @@ Title 2</string>
                         <sections/>
                     </tableView>
                     <tabBarItem key="tabBarItem" title="Agenda" image="first" id="acW-dT-cKf"/>
+                    <connections>
+                        <outlet property="agendaEventsTableView" destination="D11-oS-jdc" id="XnN-p0-NUu"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W5J-7L-Pyd" sceneMemberID="firstResponder"/>
             </objects>
