@@ -19,10 +19,10 @@
 		967F92931EBDD79C0057C70B /* SystemError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 967F92921EBDD79C0057C70B /* SystemError.swift */; };
 		967F92951EBDE6B50057C70B /* Day.swift in Sources */ = {isa = PBXBuildFile; fileRef = 967F92941EBDE6B50057C70B /* Day.swift */; };
 		967F92971EBDE7E10057C70B /* Day+Mapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 967F92961EBDE7E10057C70B /* Day+Mapper.swift */; };
-		967F92991EBDE8D20057C70B /* LoadDaysWithEventsResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 967F92981EBDE8D20057C70B /* LoadDaysWithEventsResponse.swift */; };
+		967F92991EBDE8D20057C70B /* LoadDaysResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 967F92981EBDE8D20057C70B /* LoadDaysResponse.swift */; };
 		967F929B1EBDEC9D0057C70B /* AgendaEventCloudDatasourceTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 967F929A1EBDEC9D0057C70B /* AgendaEventCloudDatasourceTest.swift */; };
 		967F929C1EBDEE770057C70B /* Day.swift in Sources */ = {isa = PBXBuildFile; fileRef = 967F92941EBDE6B50057C70B /* Day.swift */; };
-		967F929D1EBDEE7A0057C70B /* LoadDaysWithEventsResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 967F92981EBDE8D20057C70B /* LoadDaysWithEventsResponse.swift */; };
+		967F929D1EBDEE7A0057C70B /* LoadDaysResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 967F92981EBDE8D20057C70B /* LoadDaysResponse.swift */; };
 		967F929E1EBDEE7D0057C70B /* Day+Mapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 967F92961EBDE7E10057C70B /* Day+Mapper.swift */; };
 		967F929F1EBDEE800057C70B /* AgendaEvent+Mapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 967F92901EBDD2600057C70B /* AgendaEvent+Mapper.swift */; };
 		967F92A01EBDEE830057C70B /* ApiError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 967F928B1EBDD1190057C70B /* ApiError.swift */; };
@@ -30,6 +30,8 @@
 		967F92A21EBDEE8A0057C70B /* AgendaEventCloudDatasource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 967F92861EBDCEB40057C70B /* AgendaEventCloudDatasource.swift */; };
 		967F92A31EBDEE8E0057C70B /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = 967F928E1EBDD1920057C70B /* Result.swift */; };
 		967F92A41EBDEE910057C70B /* SystemError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 967F92921EBDD79C0057C70B /* SystemError.swift */; };
+		969CD9911EFEDD35001D65B2 /* DaysWithEvents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 969CD9901EFEDD35001D65B2 /* DaysWithEvents.swift */; };
+		969CD9921EFEDD35001D65B2 /* DaysWithEvents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 969CD9901EFEDD35001D65B2 /* DaysWithEvents.swift */; };
 		96B0C21D1E99452E004A3817 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96B0C21C1E99452E004A3817 /* AppDelegate.swift */; };
 		96B0C21F1E99452E004A3817 /* AgendaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96B0C21E1E99452E004A3817 /* AgendaViewController.swift */; };
 		96B0C2211E99452E004A3817 /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96B0C2201E99452E004A3817 /* SecondViewController.swift */; };
@@ -76,8 +78,9 @@
 		967F92921EBDD79C0057C70B /* SystemError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SystemError.swift; sourceTree = "<group>"; };
 		967F92941EBDE6B50057C70B /* Day.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Day.swift; sourceTree = "<group>"; };
 		967F92961EBDE7E10057C70B /* Day+Mapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Day+Mapper.swift"; sourceTree = "<group>"; };
-		967F92981EBDE8D20057C70B /* LoadDaysWithEventsResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadDaysWithEventsResponse.swift; sourceTree = "<group>"; };
+		967F92981EBDE8D20057C70B /* LoadDaysResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadDaysResponse.swift; sourceTree = "<group>"; };
 		967F929A1EBDEC9D0057C70B /* AgendaEventCloudDatasourceTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AgendaEventCloudDatasourceTest.swift; sourceTree = "<group>"; };
+		969CD9901EFEDD35001D65B2 /* DaysWithEvents.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DaysWithEvents.swift; sourceTree = "<group>"; };
 		96B0C2191E99452E004A3817 /* GrausApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GrausApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		96B0C21C1E99452E004A3817 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		96B0C21E1E99452E004A3817 /* AgendaViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgendaViewController.swift; sourceTree = "<group>"; };
@@ -149,6 +152,7 @@
 			children = (
 				419E07AE1EB3CC120053D793 /* AgendaEvent.swift */,
 				967F92941EBDE6B50057C70B /* Day.swift */,
+				969CD9901EFEDD35001D65B2 /* DaysWithEvents.swift */,
 			);
 			path = domain;
 			sourceTree = "<group>";
@@ -161,7 +165,7 @@
 				967F928B1EBDD1190057C70B /* ApiError.swift */,
 				967F92901EBDD2600057C70B /* AgendaEvent+Mapper.swift */,
 				967F92961EBDE7E10057C70B /* Day+Mapper.swift */,
-				967F92981EBDE8D20057C70B /* LoadDaysWithEventsResponse.swift */,
+				967F92981EBDE8D20057C70B /* LoadDaysResponse.swift */,
 			);
 			path = data;
 			sourceTree = "<group>";
@@ -535,12 +539,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				967F928C1EBDD1190057C70B /* ApiError.swift in Sources */,
-				967F92991EBDE8D20057C70B /* LoadDaysWithEventsResponse.swift in Sources */,
+				967F92991EBDE8D20057C70B /* LoadDaysResponse.swift in Sources */,
 				967F92971EBDE7E10057C70B /* Day+Mapper.swift in Sources */,
 				96B0C2211E99452E004A3817 /* SecondViewController.swift in Sources */,
 				967F928A1EBDD06E0057C70B /* LoadAgendaEventsResponse.swift in Sources */,
 				96B0C21D1E99452E004A3817 /* AppDelegate.swift in Sources */,
 				967F92951EBDE6B50057C70B /* Day.swift in Sources */,
+				969CD9911EFEDD35001D65B2 /* DaysWithEvents.swift in Sources */,
 				967F92871EBDCEB40057C70B /* AgendaEventCloudDatasource.swift in Sources */,
 				419E07AF1EB3CC120053D793 /* AgendaEvent.swift in Sources */,
 				967F928F1EBDD1920057C70B /* Result.swift in Sources */,
@@ -557,7 +562,7 @@
 				419E07B01EB3CC120053D793 /* AgendaEvent.swift in Sources */,
 				967F929E1EBDEE7D0057C70B /* Day+Mapper.swift in Sources */,
 				967F92A21EBDEE8A0057C70B /* AgendaEventCloudDatasource.swift in Sources */,
-				967F929D1EBDEE7A0057C70B /* LoadDaysWithEventsResponse.swift in Sources */,
+				967F929D1EBDEE7A0057C70B /* LoadDaysResponse.swift in Sources */,
 				967F929F1EBDEE800057C70B /* AgendaEvent+Mapper.swift in Sources */,
 				967F929B1EBDEC9D0057C70B /* AgendaEventCloudDatasourceTest.swift in Sources */,
 				967F92A01EBDEE830057C70B /* ApiError.swift in Sources */,
@@ -565,6 +570,7 @@
 				967F92A11EBDEE860057C70B /* LoadAgendaEventsResponse.swift in Sources */,
 				96B0C2341E99452F004A3817 /* GrausAppTests.swift in Sources */,
 				967F92A31EBDEE8E0057C70B /* Result.swift in Sources */,
+				969CD9921EFEDD35001D65B2 /* DaysWithEvents.swift in Sources */,
 				967F92A41EBDEE910057C70B /* SystemError.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

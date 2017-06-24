@@ -11,8 +11,8 @@ import RxSwift
 import RxCocoa
 
 class AgendaEventCloudDatasource {
-    func loadDaysWithEvents() -> Observable<LoadDaysWithEventsResponse> {
-        return URLSession.shared.loadDaysWithEvents()
+    func loadDays() -> Observable<LoadDaysResponse> {
+        return URLSession.shared.loadDays()
     }
     
     func loadAgendaEvents(day: Day) -> Observable<LoadAgendaEventsResponse> {
@@ -22,7 +22,7 @@ class AgendaEventCloudDatasource {
 
 extension URLSession {
     
-    func loadDaysWithEvents() -> Observable<LoadDaysWithEventsResponse> {
+    func loadDays() -> Observable<LoadDaysResponse> {
         
         let url = URL(string: "http://ejeadefiestas.ejeadigital.com/index.php/api/fiestas/dias_con_eventos/id/200/format/json")!
         
@@ -42,4 +42,5 @@ extension URLSession {
             
         
     }
+    
 }

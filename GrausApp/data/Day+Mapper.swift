@@ -9,7 +9,7 @@
 import Foundation
 
 extension Day {
-    static func parse(httpResponse: HTTPURLResponse, data: Data) throws -> LoadDaysWithEventsResponse {
+    static func parse(httpResponse: HTTPURLResponse, data: Data) throws -> LoadDaysResponse {
         if httpResponse.statusCode != 200 {
             return Result.failure(ApiError.serverError)
         }

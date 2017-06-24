@@ -91,7 +91,7 @@ class AgendaViewController: UIViewController {
                 
                 ]
             ,[
-                triggerLoadData(state)
+                //triggerLoadData(state)
             ]
             )}
         

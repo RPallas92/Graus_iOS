@@ -21,13 +21,13 @@ class AgendaEventCloudDatasourceTest: XCTestCase {
         super.tearDown()
     }
     
-    func testLoadDaysWithEvents() {
+    func testLoadDays() {
         let disposeBag = DisposeBag()
         
         let agendaEventCloudDataSource = AgendaEventCloudDatasource()
         
         let completed = self.expectation(description: "Days retrieved")
-        let observable: Observable<LoadDaysWithEventsResponse> = agendaEventCloudDataSource.loadDaysWithEvents()
+        let observable: Observable<LoadDaysResponse> = agendaEventCloudDataSource.loadDays()
         
         observable.subscribe(onNext: { days in
             

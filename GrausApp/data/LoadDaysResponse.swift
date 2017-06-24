@@ -6,4 +6,4 @@
 //  Copyright © 2017 Pallas, Ricardo. All rights reserved.
 //
 
-typealias LoadDaysWithEventsResponse = Result<([Day]), ApiError>
+typealias LoadDaysResponse = Result<([Day]), ApiError>
