@@ -10,6 +10,8 @@ import UIKit
 import RxSwift
 import RxCocoa
 import RxFeedback
+import RxDataSources
+
 
 
 fileprivate struct State {
@@ -61,19 +63,43 @@ class AgendaViewController: UIViewController {
     
     private let agendaDataSource = AgendaEventCloudDatasource()
     
+    var tableViewDataSource: RxTableViewSectionedAnimatedDataSource<AgendaEventsSection>?
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         
+        let tableViewDataSource = RxTableViewSectionedAnimatedDataSource<AgendaEventsSection>()
+
         
         agendaEventsTableView.register(UITableViewCell.self, forCellReuseIdentifier: "event")
         
         
-        func configureAgendAeventCell(_: Int, agendaEvent: AgendaEvent, cell: UITableViewCell){
+        func configureAgendEventCell(_: Int, agendaEvent: AgendaEvent, cell: UITableViewCell){
             cell.textLabel?.text = agendaEvent.name
-            cell.detailTextLabel?.text = agendaEvent.date.description
         }
+        
+        tableViewDataSource.configureCell = { ds, tv, ip, item in
+            let cell = tv.dequeueReusableCell(withIdentifier: "Cell") ?? UITableViewCell(style: .default, reuseIdentifier: "event")
+            cell.textLabel?.text = item.name
+            
+            return cell
+        }
+        
+        tableViewDataSource.titleForHeaderInSection = { ds, index in
+            return ds.sectionModels[index].header
+        }
+        
+        
+        Observable.just(sections)
+            .bind(to: tableView.rx.items(dataSource: dataSource))
+            .addDisposableTo(disposeBag)
+        
+        
+        self.tableViewDataSource = tableViewDataSource
+        
+        
         
         let triggerLoadData: (Driver<State>) -> Driver<Event> = { state in
             return state.flatMapLatest { state -> Driver<Event> in
@@ -87,11 +113,11 @@ class AgendaViewController: UIViewController {
         
         let bindUI: (Driver<State>) -> Driver<Event> = UI.bind() { state in (
             [
-                state.map { $0.results }.drive(self.agendaEventsTableView.rx.items(cellIdentifier: "event"))(configureAgendAeventCell),
+                state.map { $0.results }.drive(self.agendaEventsTableView.rx.items(cellIdentifier: "event"))(configureAgendEventCell),
                 
                 ]
             ,[
-                triggerLoadData(state)
+               triggerLoadData(state)
             ]
             )}
         
@@ -114,7 +140,31 @@ class AgendaViewController: UIViewController {
             .drive()
             .disposed(by: disposeBag)
         
+        
     }
     
+    
+    
+}
+
+
+//Boring CODE
+
+struct AgendaEventsSection {
+    var header: String
+    var items: [AgendaEvent]
+}
+
+extension AgendaEventsSection : AnimatableSectionModelType {
+    typealias Item = AgendaEvent
+
+    var identity: String {
+        return header
+    }
+    
+    init(original: AgendaEventsSection, items: [Item]) {
+        self = original
+        self.items = items
+    }
 }
 

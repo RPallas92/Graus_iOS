@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import RxDataSources
 
 struct AgendaEvent {
     let eventId: String
@@ -36,4 +37,20 @@ struct AgendaEvent {
     
 }
 
+extension AgendaEvent: Equatable {}
+func ==(left: AgendaEvent, right: AgendaEvent) -> Bool {
+    return left.eventId == right.eventId
+}
 
+
+extension AgendaEvent: Hashable {
+    var hashValue: Int {
+        return eventId.hashValue
+    }
+}
+
+extension AgendaEvent: IdentifiableType {
+    var identity: Int {
+        return eventId.hashValue
+    }
+}

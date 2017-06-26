@@ -9,6 +9,8 @@ target 'GrausApp' do
   pod 'RxSwift'
   pod 'RxCocoa'
   pod 'RxFeedback', '~> 0.1'
+  pod 'RxDataSources', '~> 1.0'
+
 
   target 'GrausAppTests' do
     inherit! :search_paths
