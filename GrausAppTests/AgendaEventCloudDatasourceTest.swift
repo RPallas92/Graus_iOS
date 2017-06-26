@@ -77,7 +77,7 @@ class AgendaEventCloudDatasourceTest: XCTestCase {
         
         
         
-        self.waitForExpectations(timeout: 10, handler: nil)
+        self.waitForExpectations(timeout: 15, handler: nil)
     }
     
     

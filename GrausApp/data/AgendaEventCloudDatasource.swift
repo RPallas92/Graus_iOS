@@ -82,7 +82,7 @@ extension URLSession {
                     
                     let eventsArray = Observable.combineLatest(eventsForEachDay)
                     
-                    let daysWithEvents = eventsArray.map { eventsArrays -> Result<(DaysWithEvents), ApiError> in
+                    return eventsArray.map { eventsArrays in
                         var daysWithEventsDict = DaysWithEvents()
                         var eventsError: ApiError?
                         
@@ -104,9 +104,7 @@ extension URLSession {
                         }
                     }
                     
-                    
-                    return daysWithEvents
-                    
+                                        
                 case .failure(let daysError):
                     return Observable.just(LoadDaysWithEventsResponse.failure(daysError))
                 }
