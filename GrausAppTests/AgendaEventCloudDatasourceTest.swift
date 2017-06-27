@@ -69,7 +69,7 @@ class AgendaEventCloudDatasourceTest: XCTestCase {
         
         let completed = self.expectation(description: "Events retrieved for day")
         let observable: Observable<LoadDaysWithEventsResponse> = agendaEventCloudDataSource.loadDaysWithEvents(day: dayWithEvents)
-        
+    
         observable.subscribe(onNext: { events in
             
             completed.fulfill()
