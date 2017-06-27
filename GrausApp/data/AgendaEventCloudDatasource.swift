@@ -89,7 +89,7 @@ extension URLSession {
                         for (index, eventsResponse) in eventsArrays.enumerated() {
                             switch eventsResponse {
                             case .success(let events):
-                                daysWithEventsDict[days[index]] = events
+                                daysWithEventsDict[nearestRange[index]] = events
                                 break
                             case .failure(let error):
                                 eventsError = error

@@ -121,8 +121,7 @@ class AgendaViewController: UIViewController {
             ]
             )}
         
-        let dayWithEvents = Date.init(timeIntervalSinceReferenceDate: 518738400.0)
-        
+        let today = Date.init()
         
         Driver.system(
             initialState: State.empty,
@@ -132,7 +131,7 @@ class AgendaViewController: UIViewController {
             bindUI,
             // NoUI, automatic feedback
             react(query: { $0.shouldLoadData }, effects: { resource in
-                return self.agendaDataSource.loadDaysWithEvents(day: dayWithEvents)
+                return self.agendaDataSource.loadDaysWithEvents(day: today)
                     .asDriver(onErrorJustReturn: .failure(.offline))
                     .map(Event.response)
             })
