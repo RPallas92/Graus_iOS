@@ -16,13 +16,13 @@ struct AgendaEvent {
     let description: String
     let lat: Float
     let lon: Float
-    let imageUrl: String
-    let imageThumbnailUrl: String
+    let imageUrl: String?
+    let imageThumbnailUrl: String?
     let date: Date
     
     
-    init(eventId:String, name: String, city: String, description: String, lat: Float, lon: Float, imageUrl:String,
-         imageThumbnailUrl:String, date: Date) {
+    init(eventId:String, name: String, city: String, description: String, lat: Float, lon: Float, imageUrl:String?,
+         imageThumbnailUrl:String?, date: Date) {
 
         self.eventId = eventId
         self.name = name

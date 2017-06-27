@@ -43,7 +43,7 @@ extension URLSession {
             .rx.response(request: URLRequest(url: url))
             .retry(3)
             .map(AgendaEvent.parse)
-            
+        
         
     }
     
@@ -65,10 +65,13 @@ extension URLSession {
             }
             
             
-            //let index = days.index(where: {$0 == nearestDay})
-            
-            return [nearestDay!]
+            if let index = days.index(where: {$0 == nearestDay}) {
+                return Array(days[index..<days.count])
+            } else {
+                return [nearestDay!]
+            }
         }
+        
         return loadDays()
             .flatMap { daysResponse -> Observable<LoadDaysWithEventsResponse> in
                 print(daysResponse)
@@ -77,12 +80,12 @@ extension URLSession {
                 case .success(let days):
                     let nearestRange = getNearDaysRange(days: days, day: day)
                     let eventsForEachDay = nearestRange.map { day in
-                            return self.loadAgendaEvents(day: day)
+                        return self.loadAgendaEvents(day: day)
                     }
                     
-                    let eventsArray = Observable.combineLatest(eventsForEachDay)
-                    
-                    return eventsArray.map { eventsArrays in
+                    return Observable.zip(eventsForEachDay) { (eventsArrays: [LoadAgendaEventsResponse]) in
+                        print(eventsArrays)
+                        //sort events by date
                         var daysWithEventsDict = DaysWithEvents()
                         var eventsError: ApiError?
                         
@@ -93,23 +96,22 @@ extension URLSession {
                                 break
                             case .failure(let error):
                                 eventsError = error
-                            
+                                
                             }
                         }
                         
                         if (eventsError == nil){
                             return LoadDaysWithEventsResponse.success(daysWithEventsDict)
                         } else {
-                           return LoadDaysWithEventsResponse.failure(eventsError!)
+                            return LoadDaysWithEventsResponse.failure(eventsError!)
                         }
                     }
                     
-                                        
                 case .failure(let daysError):
                     return Observable.just(LoadDaysWithEventsResponse.failure(daysError))
                 }
                 
-            }
+        }
         
     }
     

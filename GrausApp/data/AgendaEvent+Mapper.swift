@@ -38,8 +38,6 @@ extension AgendaEvent {
                 let description = item["texto"] as? String,
                 let lat = item["coordenadaX"] as? String,
                 let lon = item["coordenadaY"] as? String,
-                let imageUrl = item["imagen"] as? String,
-                let imageThumbnailUrl = item["thumbnail"] as? String,
                 let date = item["fecha"] as? String,
                 let parsedLat = Float.init(lat),
                 let parsedLon = Float.init(lon)
@@ -47,6 +45,9 @@ extension AgendaEvent {
             else {
                     throw SystemError("Can't parse AgendaEvent")
             }
+            
+            let imageUrl = item["imagen"] as? String
+            let imageThumbnailUrl = item["thumbnail"] as? String
             
             let parsedDate = try parseDate(object: date)
 

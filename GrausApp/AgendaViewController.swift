@@ -113,8 +113,8 @@ class AgendaViewController: UIViewController {
         
         let bindUI: (Driver<State>) -> Driver<Event> = UI.bind() { state in (
             [
-                state.map { AgendaEventsSection.fromAgendaEvents(daysWithEvents: $0.results) }.drive(self.agendaEventsTableView.rx.items(dataSource: tableViewDataSource)),
-                
+                state.map {
+                    AgendaEventsSection.fromAgendaEvents(daysWithEvents: $0.results) }.drive(self.agendaEventsTableView.rx.items(dataSource: tableViewDataSource)),
                 ]
             ,[
                triggerLoadData(state)
@@ -139,10 +139,7 @@ class AgendaViewController: UIViewController {
             .drive()
             .disposed(by: disposeBag)
         
-        
     }
-    
-    
     
 }
 
@@ -167,12 +164,15 @@ extension AgendaEventsSection : AnimatableSectionModelType {
     }
     
     static func fromAgendaEvents(daysWithEvents: DaysWithEvents) -> [AgendaEventsSection] {
-        var sections:[AgendaEventsSection] = []
-        for (day, agendaEvents) in daysWithEvents {
-            sections.append(AgendaEventsSection(header: day.toString(), items: agendaEvents))
+        
+        let sortedDictArray = daysWithEvents.sorted(by: {
+            $0.key.compare($1.key) == .orderedAscending
+        })
+
+        return sortedDictArray.map { tuple in
+            return AgendaEventsSection(header: tuple.key.toString(), items: tuple.value)
         }
         
-        return sections
     }
 }
 
