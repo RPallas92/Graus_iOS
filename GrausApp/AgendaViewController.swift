@@ -69,6 +69,8 @@ class AgendaViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+    
+        
         
         let tableViewDataSource = RxTableViewSectionedAnimatedDataSource<AgendaEventsSection>()
 
@@ -92,13 +94,7 @@ class AgendaViewController: UIViewController {
         }
         
         
-        /*Observable.just(sections)
-            .bind(to: tableView.rx.items(dataSource: dataSource))
-            .addDisposableTo(disposeBag)*/
-        
-        
         self.tableViewDataSource = tableViewDataSource
-        
         
         
         let triggerLoadData: (Driver<State>) -> Driver<Event> = { state in
