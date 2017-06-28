@@ -18,6 +18,7 @@ fileprivate struct State {
     var results: DaysWithEvents
     var lastError: ApiError?
     var shouldLoadData = true
+    var title = "Agenda"
 }
 
 fileprivate enum Event {
@@ -29,7 +30,7 @@ fileprivate enum Event {
 // transitions
 extension State {
     static var empty: State {
-        return State( results: DaysWithEvents(), lastError: nil, shouldLoadData: true)
+        return State( results: DaysWithEvents(), lastError: nil, shouldLoadData: true, title: "Agenda")
     }
     static func reduce(state: State, event: Event) -> State {
         switch event {
@@ -105,14 +106,13 @@ class AgendaViewController: UIViewController {
         
         let bindUI: (Driver<State>) -> Driver<Event> = UI.bind() { state in (
             [
-                state.map {
-                    AgendaEventsSection.fromAgendaEvents(daysWithEvents: $0.results) }.drive(self.agendaEventsTableView.rx.items(dataSource: tableViewDataSource)),
-                ]
+                state.map { AgendaEventsSection.fromAgendaEvents(daysWithEvents: $0.results) }.drive(self.agendaEventsTableView.rx.items(dataSource: tableViewDataSource)),
+                state.map { $0.title }.drive(onNext: { self.navigationController!.navigationBar.topItem!.title = $0 }, onCompleted: nil, onDisposed: nil),
+            ]
             ,[
                triggerLoadData(state)
             ]
             )}
-        
         let today = Date.init()
         
         Driver.system(
