@@ -69,12 +69,8 @@ class AgendaViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-    
-        
-        
         let tableViewDataSource = RxTableViewSectionedAnimatedDataSource<AgendaEventsSection>()
 
-        
         agendaEventsTableView.register(UITableViewCell.self, forCellReuseIdentifier: "event")
         
         
