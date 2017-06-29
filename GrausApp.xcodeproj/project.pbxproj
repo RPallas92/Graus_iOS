@@ -11,6 +11,12 @@
 		419E07AF1EB3CC120053D793 /* AgendaEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 419E07AE1EB3CC120053D793 /* AgendaEvent.swift */; };
 		419E07B01EB3CC120053D793 /* AgendaEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 419E07AE1EB3CC120053D793 /* AgendaEvent.swift */; };
 		419E07B11EB3CC120053D793 /* AgendaEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 419E07AE1EB3CC120053D793 /* AgendaEvent.swift */; };
+		966F13B01F050BA100C7E52C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 966F13AF1F050BA100C7E52C /* AppDelegate.swift */; };
+		966F13B11F050BA100C7E52C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 966F13AF1F050BA100C7E52C /* AppDelegate.swift */; };
+		966F13B41F050BE100C7E52C /* AgendaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 966F13B31F050BE100C7E52C /* AgendaViewController.swift */; };
+		966F13B51F050BE100C7E52C /* AgendaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 966F13B31F050BE100C7E52C /* AgendaViewController.swift */; };
+		966F13B71F050BE900C7E52C /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 966F13B61F050BE900C7E52C /* SecondViewController.swift */; };
+		966F13B81F050BE900C7E52C /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 966F13B61F050BE900C7E52C /* SecondViewController.swift */; };
 		967F928F1EBDD1920057C70B /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = 967F928E1EBDD1920057C70B /* Result.swift */; };
 		967F92931EBDD79C0057C70B /* SystemError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 967F92921EBDD79C0057C70B /* SystemError.swift */; };
 		967F92951EBDE6B50057C70B /* Day.swift in Sources */ = {isa = PBXBuildFile; fileRef = 967F92941EBDE6B50057C70B /* Day.swift */; };
@@ -34,9 +40,6 @@
 		967FA7F91F040DFC00CFEF56 /* AgendaEventCloudDatasource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 967FA7F71F040DFC00CFEF56 /* AgendaEventCloudDatasource.swift */; };
 		969CD9911EFEDD35001D65B2 /* DaysWithEvents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 969CD9901EFEDD35001D65B2 /* DaysWithEvents.swift */; };
 		969CD9921EFEDD35001D65B2 /* DaysWithEvents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 969CD9901EFEDD35001D65B2 /* DaysWithEvents.swift */; };
-		96B0C21D1E99452E004A3817 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96B0C21C1E99452E004A3817 /* AppDelegate.swift */; };
-		96B0C21F1E99452E004A3817 /* AgendaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96B0C21E1E99452E004A3817 /* AgendaViewController.swift */; };
-		96B0C2211E99452E004A3817 /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96B0C2201E99452E004A3817 /* SecondViewController.swift */; };
 		96B0C2241E99452E004A3817 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 96B0C2221E99452E004A3817 /* Main.storyboard */; };
 		96B0C2261E99452E004A3817 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 96B0C2251E99452E004A3817 /* Assets.xcassets */; };
 		96B0C2291E99452E004A3817 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 96B0C2271E99452E004A3817 /* LaunchScreen.storyboard */; };
@@ -72,6 +75,9 @@
 		6B42EB2531ED1FCD883EA6FE /* Pods_GrausApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GrausApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7E438D77C06850FB87B49464 /* Pods-GrausApp-GrausAppTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GrausApp-GrausAppTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-GrausApp-GrausAppTests/Pods-GrausApp-GrausAppTests.release.xcconfig"; sourceTree = "<group>"; };
 		8AB719885537CACC74F73FA4 /* Pods-GrausAppTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GrausAppTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-GrausAppTests/Pods-GrausAppTests.debug.xcconfig"; sourceTree = "<group>"; };
+		966F13AF1F050BA100C7E52C /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		966F13B31F050BE100C7E52C /* AgendaViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AgendaViewController.swift; sourceTree = "<group>"; };
+		966F13B61F050BE900C7E52C /* SecondViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SecondViewController.swift; sourceTree = "<group>"; };
 		967F928E1EBDD1920057C70B /* Result.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = "<group>"; };
 		967F92921EBDD79C0057C70B /* SystemError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SystemError.swift; sourceTree = "<group>"; };
 		967F92941EBDE6B50057C70B /* Day.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Day.swift; sourceTree = "<group>"; };
@@ -85,9 +91,6 @@
 		967FA7F71F040DFC00CFEF56 /* AgendaEventCloudDatasource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AgendaEventCloudDatasource.swift; sourceTree = "<group>"; };
 		969CD9901EFEDD35001D65B2 /* DaysWithEvents.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DaysWithEvents.swift; sourceTree = "<group>"; };
 		96B0C2191E99452E004A3817 /* GrausApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GrausApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		96B0C21C1E99452E004A3817 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		96B0C21E1E99452E004A3817 /* AgendaViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgendaViewController.swift; sourceTree = "<group>"; };
-		96B0C2201E99452E004A3817 /* SecondViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondViewController.swift; sourceTree = "<group>"; };
 		96B0C2231E99452E004A3817 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		96B0C2251E99452E004A3817 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		96B0C2281E99452E004A3817 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -160,6 +163,14 @@
 			path = domain;
 			sourceTree = "<group>";
 		};
+		966F13B21F050BE100C7E52C /* agenda */ = {
+			isa = PBXGroup;
+			children = (
+				966F13B31F050BE100C7E52C /* AgendaViewController.swift */,
+			);
+			path = agenda;
+			sourceTree = "<group>";
+		};
 		967F92841EBDCEA00057C70B /* data */ = {
 			isa = PBXGroup;
 			children = (
@@ -173,6 +184,8 @@
 		967F92851EBDCEA00057C70B /* presentation */ = {
 			isa = PBXGroup;
 			children = (
+				966F13B61F050BE900C7E52C /* SecondViewController.swift */,
+				966F13B21F050BE100C7E52C /* agenda */,
 			);
 			path = presentation;
 			sourceTree = "<group>";
@@ -180,6 +193,7 @@
 		967F928D1EBDD1830057C70B /* common */ = {
 			isa = PBXGroup;
 			children = (
+				966F13AF1F050BA100C7E52C /* AppDelegate.swift */,
 				967F928E1EBDD1920057C70B /* Result.swift */,
 				967F92921EBDD79C0057C70B /* SystemError.swift */,
 			);
@@ -251,9 +265,6 @@
 				967F92841EBDCEA00057C70B /* data */,
 				967F92851EBDCEA00057C70B /* presentation */,
 				419E07AC1EB3CBFA0053D793 /* domain */,
-				96B0C21C1E99452E004A3817 /* AppDelegate.swift */,
-				96B0C21E1E99452E004A3817 /* AgendaViewController.swift */,
-				96B0C2201E99452E004A3817 /* SecondViewController.swift */,
 				96B0C2221E99452E004A3817 /* Main.storyboard */,
 				96B0C2251E99452E004A3817 /* Assets.xcassets */,
 				96B0C2271E99452E004A3817 /* LaunchScreen.storyboard */,
@@ -577,18 +588,18 @@
 				967FA7EB1F040DD500CFEF56 /* ApiError.swift in Sources */,
 				967FA7EC1F040DD500CFEF56 /* LoadAgendaEventsResponse.swift in Sources */,
 				967FA7EE1F040DD500CFEF56 /* LoadDaysWithEventsResponse.swift in Sources */,
-				96B0C2211E99452E004A3817 /* SecondViewController.swift in Sources */,
+				966F13B71F050BE900C7E52C /* SecondViewController.swift in Sources */,
 				967FA7E41F040DC600CFEF56 /* AgendaEvent+Mapper.swift in Sources */,
-				96B0C21D1E99452E004A3817 /* AppDelegate.swift in Sources */,
 				967F92951EBDE6B50057C70B /* Day.swift in Sources */,
 				967FA7F81F040DFC00CFEF56 /* AgendaEventCloudDatasource.swift in Sources */,
 				969CD9911EFEDD35001D65B2 /* DaysWithEvents.swift in Sources */,
 				967FA7E51F040DC600CFEF56 /* Day+Mapper.swift in Sources */,
+				966F13B01F050BA100C7E52C /* AppDelegate.swift in Sources */,
 				419E07AF1EB3CC120053D793 /* AgendaEvent.swift in Sources */,
 				967FA7ED1F040DD500CFEF56 /* LoadDaysResponse.swift in Sources */,
 				967F928F1EBDD1920057C70B /* Result.swift in Sources */,
+				966F13B41F050BE100C7E52C /* AgendaViewController.swift in Sources */,
 				967F92931EBDD79C0057C70B /* SystemError.swift in Sources */,
-				96B0C21F1E99452E004A3817 /* AgendaViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -597,8 +608,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				419E07B01EB3CC120053D793 /* AgendaEvent.swift in Sources */,
+				966F13B81F050BE900C7E52C /* SecondViewController.swift in Sources */,
 				967FA7F41F040DEF00CFEF56 /* LoadDaysWithEventsResponse.swift in Sources */,
 				967F929B1EBDEC9D0057C70B /* AgendaEventCloudDatasourceTest.swift in Sources */,
+				966F13B11F050BA100C7E52C /* AppDelegate.swift in Sources */,
+				966F13B51F050BE100C7E52C /* AgendaViewController.swift in Sources */,
 				967FA7F21F040DE900CFEF56 /* LoadAgendaEventsResponse.swift in Sources */,
 				967F929C1EBDEE770057C70B /* Day.swift in Sources */,
 				967FA7F11F040DE600CFEF56 /* ApiError.swift in Sources */,
