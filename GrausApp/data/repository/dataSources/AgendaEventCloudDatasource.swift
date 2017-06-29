@@ -56,14 +56,13 @@ extension URLSession {
                 guard let oldDay = old else {
                     return current
                 }
-                
+
                 if (day > oldDay) {
                     return current
                 } else {
                     return oldDay
                 }
             }
-            
             
             if let index = days.index(where: {$0 == nearestDay}) {
                 return Array(days[index..<days.count])
@@ -74,7 +73,6 @@ extension URLSession {
         
         return loadDays()
             .flatMap { daysResponse -> Observable<LoadDaysWithEventsResponse> in
-                print(daysResponse)
                 
                 switch daysResponse {
                 case .success(let days):
@@ -84,8 +82,6 @@ extension URLSession {
                     }
                     
                     return Observable.zip(eventsForEachDay) { (eventsArrays: [LoadAgendaEventsResponse]) in
-                        print(eventsArrays)
-                        //sort events by date
                         var daysWithEventsDict = DaysWithEvents()
                         var eventsError: ApiError?
                         
@@ -96,7 +92,6 @@ extension URLSession {
                                 break
                             case .failure(let error):
                                 eventsError = error
-                                
                             }
                         }
                         
