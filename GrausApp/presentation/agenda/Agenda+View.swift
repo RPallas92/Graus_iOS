@@ -13,49 +13,6 @@ import RxFeedback
 import RxDataSources
 
 
-
-fileprivate struct State {
-    var results: DaysWithEvents
-    var lastError: ApiError?
-    var shouldLoadData = true
-    var title = "Agenda"
-}
-
-fileprivate enum Event {
-    case startLoadingEvents()
-    case response(LoadDaysWithEventsResponse)
-}
-
-
-// transitions
-extension State {
-    static var empty: State {
-        return State( results: DaysWithEvents(), lastError: nil, shouldLoadData: true, title: "Agenda")
-    }
-    static func reduce(state: State, event: Event) -> State {
-        switch event {
-        case .startLoadingEvents():
-            var result = state
-            result.shouldLoadData = true
-            return result
-        case .response(.success(let response)):
-            var result = state
-            result.results = response
-            result.lastError = nil
-            return result
-        case .response(.failure(let error)):
-            var result = state
-            result.lastError = error
-            return result
-        }
-    }
-}
-
-// queries
-extension State {
-    
-}
-
 class AgendaViewController: UIViewController {
     
     @IBOutlet var agendaEventsTableView: UITableView!
@@ -108,9 +65,9 @@ class AgendaViewController: UIViewController {
             [
                 state.map { AgendaEventsSection.fromAgendaEvents(daysWithEvents: $0.results) }.drive(self.agendaEventsTableView.rx.items(dataSource: tableViewDataSource)),
                 state.map { $0.title }.drive(onNext: { self.navigationController!.navigationBar.topItem!.title = $0 }, onCompleted: nil, onDisposed: nil),
-            ]
+                ]
             ,[
-               triggerLoadData(state)
+                triggerLoadData(state)
             ]
             )}
         let today = Date.init()
