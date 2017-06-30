@@ -45,7 +45,7 @@ extension State {
     }
 }
 
-// queries
+// queries - rpallas: I understand this as computed values that UI elements query to the State
 extension State {
     
 }

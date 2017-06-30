@@ -17,18 +17,28 @@ DEPENDENCIES:
   - RxBlocking
   - RxCocoa
   - RxDataSources (~> 1.0)
-  - RxFeedback (~> 0.1)
+  - RxFeedback (from `https://github.com/kzaher/RxFeedback.git`, commit `90306372483bc145d8b2d73f8943691235cb159d`)
   - RxSwift
   - RxTest
+
+EXTERNAL SOURCES:
+  RxFeedback:
+    :commit: 90306372483bc145d8b2d73f8943691235cb159d
+    :git: https://github.com/kzaher/RxFeedback.git
+
+CHECKOUT OPTIONS:
+  RxFeedback:
+    :commit: 90306372483bc145d8b2d73f8943691235cb159d
+    :git: https://github.com/kzaher/RxFeedback.git
 
 SPEC CHECKSUMS:
   RxBlocking: 1e8c41cfe7ca2fc0e19d0e616c553845c63cbbd3
   RxCocoa: a8a5f1d061d0043e28f56976829f31ce63e8eb09
   RxDataSources: a021a0e944ba5f7991259829d973afdbfa719c0b
-  RxFeedback: c23bebc1a6a0186de2ccf23a9308a4e85f498eb1
+  RxFeedback: f68e4995f298f98487f123e754c3c20321be0083
   RxSwift: 656f8fbeca5bc372121a72d9ebdd3cd3bc0ffade
   RxTest: a6fd6e4069face7c6488f96f6c42296b3e44db48
 
-PODFILE CHECKSUM: 0e1a61249d41737efa28bb7db3ed07d09209e9e0
+PODFILE CHECKSUM: bb6b7c22c10651e66b9ddc92b94bc99b2fe820ba
 
 COCOAPODS: 1.2.1

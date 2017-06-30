@@ -8,7 +8,7 @@ target 'GrausApp' do
   # Pods for GrausApp
   pod 'RxSwift'
   pod 'RxCocoa'
-  pod 'RxFeedback', '~> 0.1'
+  pod 'RxFeedback', :git => 'https://github.com/kzaher/RxFeedback.git', :commit => '90306372483bc145d8b2d73f8943691235cb159d'
   pod 'RxDataSources', '~> 1.0'
 
 

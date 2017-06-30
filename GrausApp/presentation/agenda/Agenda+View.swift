@@ -61,15 +61,19 @@ class AgendaViewController: UIViewController {
             }
         }
         
-        let bindUI: (Driver<State>) -> Driver<Event> = UI.bind() { state in (
-            [
-                state.map { AgendaEventsSection.fromAgendaEvents(daysWithEvents: $0.results) }.drive(self.agendaEventsTableView.rx.items(dataSource: tableViewDataSource)),
-                state.map { $0.title }.drive(onNext: { self.navigationController!.navigationBar.topItem!.title = $0 }, onCompleted: nil, onDisposed: nil),
+        
+        let bindUI: (Driver<State>) -> Driver<Event> = UI.bind(self) { me, state in
+            let subscriptions = [
+                state.map { AgendaEventsSection.fromAgendaEvents(daysWithEvents: $0.results) }.drive(me.agendaEventsTableView.rx.items(dataSource: tableViewDataSource)),
+                state.map { $0.title }.drive(onNext: { me.navigationController!.navigationBar.topItem!.title = $0 }, onCompleted: nil, onDisposed: nil)
                 ]
-            ,[
+            let events = [
                 triggerLoadData(state)
             ]
-            )}
+            return UI.Bindings(subscriptions: subscriptions, events: events)
+        }
+        
+        
         let today = Date.init()
         
         Driver.system(
