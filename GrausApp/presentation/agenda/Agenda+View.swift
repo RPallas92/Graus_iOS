@@ -77,13 +77,9 @@ class AgendaViewController: UIViewController {
 
         agendaEventsTableView.register(UITableViewCell.self, forCellReuseIdentifier: "event")
         
-        func configureAgendEventCell(_: Int, agendaEvent: AgendaEvent, cell: UITableViewCell){
-            cell.textLabel?.text = agendaEvent.name
-        }
-        
-        tableViewDataSource.configureCell = { dataSource, tableView, indexPath, agendaEvnet in
-            let cell = tableView.dequeueReusableCell(withIdentifier: "Cell") ?? UITableViewCell(style: .default, reuseIdentifier: "event")
-            cell.textLabel?.text = agendaEvnet.name
+        tableViewDataSource.configureCell = { dataSource, tableView, indexPath, agendaEvent in
+            let cell = tableView.dequeueReusableCell(withIdentifier: "agendaEvent") as! AgendaEventCell
+            cell.event = agendaEvent
             
             return cell
         }
