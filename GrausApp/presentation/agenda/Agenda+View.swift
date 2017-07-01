@@ -95,37 +95,3 @@ class AgendaViewController: UIViewController {
     }
     
 }
-
-
-//Boring CODE
-
-struct AgendaEventsSection {
-    var header: String
-    var items: [AgendaEvent]
-}
-
-extension AgendaEventsSection : AnimatableSectionModelType {
-    typealias Item = AgendaEvent
-
-    var identity: String {
-        return header
-    }
-    
-    init(original: AgendaEventsSection, items: [Item]) {
-        self = original
-        self.items = items
-    }
-    
-    static func fromAgendaEvents(daysWithEvents: DaysWithEvents) -> [AgendaEventsSection] {
-        
-        let sortedDictArray = daysWithEvents.sorted(by: {
-            $0.key.compare($1.key) == .orderedAscending
-        })
-
-        return sortedDictArray.map { tuple in
-            return AgendaEventsSection(header: tuple.key.toString(), items: tuple.value)
-        }
-        
-    }
-}
-
