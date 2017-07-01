@@ -17,8 +17,16 @@ extension Day {
         return dateFormatter.string(from: self)
     }
     
+    func toReadableString() -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = DateFormatter.dateFormat(fromTemplate: "MMddyyyy", options: 0, locale: Locale.current)
+        return dateFormatter.string(from: self)
+    }
+    
     func toHourString() -> String {
-        return self.toString()
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = DateFormatter.dateFormat(fromTemplate: "HH:mm", options: 0, locale: Locale.current)
+        return dateFormatter.string(from: self)
     }
     
     static func getToday() -> Day {

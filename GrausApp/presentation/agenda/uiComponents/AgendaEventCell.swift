@@ -18,7 +18,7 @@ class AgendaEventCell: UITableViewCell {
                     let url = URL(string: thumbnailUrl)
                     iconImageView.pin_setImage(from: url)
                 }
-                hoursLabel.text = event.date.toString()
+                hoursLabel.text = event.date.toHourString()
                 titleLabel.text = event.name
             }
         }

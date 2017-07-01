@@ -17,7 +17,7 @@ extension AgendaEventsSection {
         })
         
         return sortedDictArray.map { tuple in
-            return AgendaEventsSection(header: tuple.key.toString(), items: tuple.value)
+            return AgendaEventsSection(header: tuple.key.toReadableString(), items: tuple.value)
         }
         
     }
