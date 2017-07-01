@@ -89,12 +89,18 @@ strip_invalid_archs() {
 
 
 if [[ "$CONFIGURATION" == "Debug" ]]; then
+  install_framework "$BUILT_PRODUCTS_DIR/FLAnimatedImage/FLAnimatedImage.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/PINCache/PINCache.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/PINRemoteImage/PINRemoteImage.framework"
   install_framework "$BUILT_PRODUCTS_DIR/RxCocoa/RxCocoa.framework"
   install_framework "$BUILT_PRODUCTS_DIR/RxDataSources/RxDataSources.framework"
   install_framework "$BUILT_PRODUCTS_DIR/RxFeedback/RxFeedback.framework"
   install_framework "$BUILT_PRODUCTS_DIR/RxSwift/RxSwift.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
+  install_framework "$BUILT_PRODUCTS_DIR/FLAnimatedImage/FLAnimatedImage.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/PINCache/PINCache.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/PINRemoteImage/PINRemoteImage.framework"
   install_framework "$BUILT_PRODUCTS_DIR/RxCocoa/RxCocoa.framework"
   install_framework "$BUILT_PRODUCTS_DIR/RxDataSources/RxDataSources.framework"
   install_framework "$BUILT_PRODUCTS_DIR/RxFeedback/RxFeedback.framework"

@@ -15,6 +15,8 @@
 		9656F4171F07D16A00146CF4 /* AgendaEventSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9656F4151F07D16A00146CF4 /* AgendaEventSection.swift */; };
 		9656F41A1F07D1C900146CF4 /* AgendaEventSection+Mapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9656F4191F07D1C900146CF4 /* AgendaEventSection+Mapper.swift */; };
 		9656F41B1F07D1C900146CF4 /* AgendaEventSection+Mapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9656F4191F07D1C900146CF4 /* AgendaEventSection+Mapper.swift */; };
+		9656F41E1F07D40C00146CF4 /* AgendaEventCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9656F41D1F07D40C00146CF4 /* AgendaEventCell.swift */; };
+		9656F41F1F07D40C00146CF4 /* AgendaEventCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9656F41D1F07D40C00146CF4 /* AgendaEventCell.swift */; };
 		966F13B01F050BA100C7E52C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 966F13AF1F050BA100C7E52C /* AppDelegate.swift */; };
 		966F13B11F050BA100C7E52C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 966F13AF1F050BA100C7E52C /* AppDelegate.swift */; };
 		966F13B71F050BE900C7E52C /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 966F13B61F050BE900C7E52C /* SecondViewController.swift */; };
@@ -85,6 +87,7 @@
 		8AB719885537CACC74F73FA4 /* Pods-GrausAppTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GrausAppTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-GrausAppTests/Pods-GrausAppTests.debug.xcconfig"; sourceTree = "<group>"; };
 		9656F4151F07D16A00146CF4 /* AgendaEventSection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AgendaEventSection.swift; sourceTree = "<group>"; };
 		9656F4191F07D1C900146CF4 /* AgendaEventSection+Mapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "AgendaEventSection+Mapper.swift"; sourceTree = "<group>"; };
+		9656F41D1F07D40C00146CF4 /* AgendaEventCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AgendaEventCell.swift; sourceTree = "<group>"; };
 		966F13AF1F050BA100C7E52C /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		966F13B61F050BE900C7E52C /* SecondViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SecondViewController.swift; sourceTree = "<group>"; };
 		966F13BC1F05119000C7E52C /* Agenda+View.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Agenda+View.swift"; sourceTree = "<group>"; };
@@ -191,9 +194,18 @@
 			path = mapper;
 			sourceTree = "<group>";
 		};
+		9656F41C1F07D3FC00146CF4 /* uiComponents */ = {
+			isa = PBXGroup;
+			children = (
+				9656F41D1F07D40C00146CF4 /* AgendaEventCell.swift */,
+			);
+			path = uiComponents;
+			sourceTree = "<group>";
+		};
 		966F13B21F050BE100C7E52C /* agenda */ = {
 			isa = PBXGroup;
 			children = (
+				9656F41C1F07D3FC00146CF4 /* uiComponents */,
 				9656F4181F07D1B800146CF4 /* mapper */,
 				9656F4141F07D14100146CF4 /* model */,
 				966F13BC1F05119000C7E52C /* Agenda+View.swift */,
@@ -635,6 +647,7 @@
 				967F928F1EBDD1920057C70B /* Result.swift in Sources */,
 				967F92931EBDD79C0057C70B /* SystemError.swift in Sources */,
 				966F13BD1F05119000C7E52C /* Agenda+View.swift in Sources */,
+				9656F41E1F07D40C00146CF4 /* AgendaEventCell.swift in Sources */,
 				966F13C31F0511AF00C7E52C /* Agenda+Feedback.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -653,6 +666,7 @@
 				967F929C1EBDEE770057C70B /* Day.swift in Sources */,
 				967FA7F11F040DE600CFEF56 /* ApiError.swift in Sources */,
 				967FA7F31F040DEC00CFEF56 /* LoadDaysResponse.swift in Sources */,
+				9656F41F1F07D40C00146CF4 /* AgendaEventCell.swift in Sources */,
 				966F13BE1F05119000C7E52C /* Agenda+View.swift in Sources */,
 				96B0C2341E99452F004A3817 /* GrausAppTests.swift in Sources */,
 				967FA7F91F040DFC00CFEF56 /* AgendaEventCloudDatasource.swift in Sources */,

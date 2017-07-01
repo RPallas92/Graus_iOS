@@ -81,9 +81,9 @@ class AgendaViewController: UIViewController {
             cell.textLabel?.text = agendaEvent.name
         }
         
-        tableViewDataSource.configureCell = { ds, tv, ip, item in
-            let cell = tv.dequeueReusableCell(withIdentifier: "Cell") ?? UITableViewCell(style: .default, reuseIdentifier: "event")
-            cell.textLabel?.text = item.name
+        tableViewDataSource.configureCell = { dataSource, tableView, indexPath, agendaEvnet in
+            let cell = tableView.dequeueReusableCell(withIdentifier: "Cell") ?? UITableViewCell(style: .default, reuseIdentifier: "event")
+            cell.textLabel?.text = agendaEvnet.name
             
             return cell
         }

@@ -1,4 +1,13 @@
 PODS:
+  - FLAnimatedImage (1.0.12)
+  - PINCache (2.3)
+  - PINRemoteImage (2.1.4):
+    - PINRemoteImage/FLAnimatedImage (= 2.1.4)
+  - PINRemoteImage/Core (2.1.4):
+    - PINCache (>= 2.1)
+  - PINRemoteImage/FLAnimatedImage (2.1.4):
+    - FLAnimatedImage (>= 1.0)
+    - PINRemoteImage/Core
   - RxBlocking (3.4.1):
     - RxSwift (~> 3.4)
   - RxCocoa (3.4.1):
@@ -14,6 +23,7 @@ PODS:
     - RxSwift (~> 3.4)
 
 DEPENDENCIES:
+  - PINRemoteImage (~> 2.1)
   - RxBlocking
   - RxCocoa
   - RxDataSources (~> 1.0)
@@ -32,6 +42,9 @@ CHECKOUT OPTIONS:
     :git: https://github.com/kzaher/RxFeedback.git
 
 SPEC CHECKSUMS:
+  FLAnimatedImage: 4a0b56255d9b05f18b6dd7ee06871be5d3b89e31
+  PINCache: ce36ed282031b92fc7733ffe831f474ff80fddc2
+  PINRemoteImage: 4ac4011c5caefd6befd99758e09becede05d3226
   RxBlocking: 1e8c41cfe7ca2fc0e19d0e616c553845c63cbbd3
   RxCocoa: a8a5f1d061d0043e28f56976829f31ce63e8eb09
   RxDataSources: a021a0e944ba5f7991259829d973afdbfa719c0b
@@ -39,6 +52,6 @@ SPEC CHECKSUMS:
   RxSwift: 656f8fbeca5bc372121a72d9ebdd3cd3bc0ffade
   RxTest: a6fd6e4069face7c6488f96f6c42296b3e44db48
 
-PODFILE CHECKSUM: bb6b7c22c10651e66b9ddc92b94bc99b2fe820ba
+PODFILE CHECKSUM: 934b871ec6c16c9fa5dbc3d359698da0b3e77900
 
 COCOAPODS: 1.2.1
