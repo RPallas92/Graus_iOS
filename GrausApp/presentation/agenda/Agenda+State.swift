@@ -11,6 +11,7 @@ import Foundation
 struct State {
     var results: DaysWithEvents
     var lastError: ApiError?
+    var isLoadingData = false
     var shouldLoadData = true
     var title = "Agenda"
 }
@@ -24,22 +25,27 @@ enum Event {
 // transitions
 extension State {
     static var empty: State {
-        return State( results: DaysWithEvents(), lastError: nil, shouldLoadData: true, title: "Agenda")
+        return State( results: DaysWithEvents(), lastError: nil, isLoadingData: false, shouldLoadData: true, title: "Agenda")
     }
     static func reduce(state: State, event: Event) -> State {
         switch event {
         case .startLoadingEvents():
             var result = state
-            result.shouldLoadData = true
+            result.isLoadingData = true
+            result.shouldLoadData = false
             return result
         case .response(.success(let response)):
             var result = state
             result.results = response
             result.lastError = nil
+            result.isLoadingData = false
+            result.shouldLoadData = false
             return result
         case .response(.failure(let error)):
             var result = state
             result.lastError = error
+            result.isLoadingData = false
+            result.shouldLoadData = false
             return result
         }
     }

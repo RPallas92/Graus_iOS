@@ -18,55 +18,29 @@ class AgendaViewController: UIViewController {
     @IBOutlet var agendaEventsTableView: UITableView!
     
     private let disposeBag = DisposeBag()
-    
     private let agendaDataSource = AgendaEventCloudDatasource()
-    
-    var tableViewDataSource: RxTableViewSectionedAnimatedDataSource<AgendaEventsSection>?
+    private let tableViewDataSource = RxTableViewSectionedAnimatedDataSource<AgendaEventsSection>()
 
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        let tableViewDataSource = RxTableViewSectionedAnimatedDataSource<AgendaEventsSection>()
 
-        agendaEventsTableView.register(UITableViewCell.self, forCellReuseIdentifier: "event")
-        
-        
-        func configureAgendEventCell(_: Int, agendaEvent: AgendaEvent, cell: UITableViewCell){
-            cell.textLabel?.text = agendaEvent.name
-        }
-        
-        tableViewDataSource.configureCell = { ds, tv, ip, item in
-            let cell = tv.dequeueReusableCell(withIdentifier: "Cell") ?? UITableViewCell(style: .default, reuseIdentifier: "event")
-            cell.textLabel?.text = item.name
-            
-            return cell
-        }
-        
-        tableViewDataSource.titleForHeaderInSection = { ds, index in
-            return ds.sectionModels[index].header
-        }
-        
-        
-        self.tableViewDataSource = tableViewDataSource
-        
+        initTableView()
         
         let triggerLoadData: (Driver<State>) -> Driver<Event> = { state in
             return state.flatMapLatest { state -> Driver<Event> in
                 if state.shouldLoadData {
-                    return Driver.empty()
+                    return Driver.just(Event.startLoadingEvents())
                 }
-                
-                return Driver.just(Event.startLoadingEvents())
+                return Driver.empty()
             }
         }
         
-        
         let bindUI: (Driver<State>) -> Driver<Event> = UI.bind(self) { me, state in
             let subscriptions = [
-                state.map { AgendaEventsSection.fromAgendaEvents(daysWithEvents: $0.results) }.drive(me.agendaEventsTableView.rx.items(dataSource: tableViewDataSource)),
+                state.map { AgendaEventsSection.fromAgendaEvents(daysWithEvents: $0.results) }.drive(me.agendaEventsTableView.rx.items(dataSource: me.tableViewDataSource)),
                 state.map { $0.title }.drive(onNext: { me.navigationController!.navigationBar.topItem!.title = $0 }, onCompleted: nil, onDisposed: nil)
-                ]
+            ]
             let events = [
                 triggerLoadData(state)
             ]
@@ -83,14 +57,40 @@ class AgendaViewController: UIViewController {
             // UI, user feedback
             bindUI,
             // NoUI, automatic feedback
-            react(query: { $0.shouldLoadData }, effects: { resource in
-                return self.agendaDataSource.loadDaysWithEvents(day: today)
-                    .asDriver(onErrorJustReturn: .failure(.offline))
-                    .map(Event.response)
+            react(query: { $0.isLoadingData }, effects: { isLoadingData in
+                if(isLoadingData){
+                    return self.agendaDataSource.loadDaysWithEvents(day: today)
+                        .asDriver(onErrorJustReturn: .failure(.offline))
+                        .map(Event.response)
+                } else {
+                    return Driver.empty()
+                }
             })
             )
             .drive()
             .disposed(by: disposeBag)
+        
+    }
+    
+    
+    func initTableView(){
+
+        agendaEventsTableView.register(UITableViewCell.self, forCellReuseIdentifier: "event")
+        
+        func configureAgendEventCell(_: Int, agendaEvent: AgendaEvent, cell: UITableViewCell){
+            cell.textLabel?.text = agendaEvent.name
+        }
+        
+        tableViewDataSource.configureCell = { ds, tv, ip, item in
+            let cell = tv.dequeueReusableCell(withIdentifier: "Cell") ?? UITableViewCell(style: .default, reuseIdentifier: "event")
+            cell.textLabel?.text = item.name
+            
+            return cell
+        }
+        
+        tableViewDataSource.titleForHeaderInSection = { ds, index in
+            return ds.sectionModels[index].header
+        }
         
     }
     
