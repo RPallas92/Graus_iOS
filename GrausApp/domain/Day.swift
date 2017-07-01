@@ -19,7 +19,7 @@ extension Day {
     
     func toReadableString() -> String {
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = DateFormatter.dateFormat(fromTemplate: "MMddyyyy", options: 0, locale: Locale.current)
+        dateFormatter.dateFormat = DateFormatter.dateFormat(fromTemplate: "EEEEMMddyyyy", options: 0, locale: Locale.current)
         return dateFormatter.string(from: self)
     }
     
