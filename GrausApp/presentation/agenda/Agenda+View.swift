@@ -48,8 +48,6 @@ class AgendaViewController: UIViewController {
         }
         
         
-        let today = Date.init()
-        
         Driver.system(
             initialState: State.empty,
             reduce: State.reduce,
@@ -59,7 +57,7 @@ class AgendaViewController: UIViewController {
             // NoUI, automatic feedback
             react(query: { $0.isLoadingData }, effects: { isLoadingData in
                 if(isLoadingData){
-                    return self.agendaDataSource.loadDaysWithEvents(day: today)
+                    return self.agendaDataSource.loadDaysWithEvents(day: Day.getToday())
                         .asDriver(onErrorJustReturn: .failure(.offline))
                         .map(Event.response)
                 } else {
@@ -71,6 +69,7 @@ class AgendaViewController: UIViewController {
             .disposed(by: disposeBag)
         
     }
+    
     
     
     func initTableView(){

@@ -16,4 +16,14 @@ extension Day {
         dateFormatter.dateFormat = "yyyy-MM-dd"
         return dateFormatter.string(from: self)
     }
+    
+    func toHourString() -> String {
+        return self.toString()
+    }
+    
+    static func getToday() -> Day {
+        let date = Date()
+        let cal = Calendar(identifier: .gregorian)
+        return cal.startOfDay(for: date)
+    }
 }

@@ -54,7 +54,7 @@ extension Day {
         }
         
         let dateFormatter = DateFormatter()
-        dateFormatter.locale = Locale.current
+        dateFormatter.timeZone = TimeZone(identifier: "GMT")
         dateFormatter.dateFormat = "dd/MM/yyyy"
         if let date = dateFormatter.date(from: dateString) {
             return date
