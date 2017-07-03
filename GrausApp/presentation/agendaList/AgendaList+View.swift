@@ -27,16 +27,16 @@ class AgendaViewController: UIViewController {
 
         initTableView()
         
-        let triggerLoadData: (Driver<State>) -> Driver<Event> = { state in
-            return state.flatMapLatest { state -> Driver<Event> in
+        let triggerLoadData: (Driver<AgendaListState>) -> Driver<AgendaListEvent> = { state in
+            return state.flatMapLatest { state -> Driver<AgendaListEvent> in
                 if state.shouldLoadData {
-                    return Driver.just(Event.startLoadingEvents())
+                    return Driver.just(AgendaListEvent.startLoadingEvents())
                 }
                 return Driver.empty()
             }
         }
         
-        let bindUI: (Driver<State>) -> Driver<Event> = UI.bind(self) { me, state in
+        let bindUI: (Driver<AgendaListState>) -> Driver<AgendaListEvent> = UI.bind(self) { me, state in
             let subscriptions = [
                 state.map { AgendaEventsSection.fromAgendaEvents(daysWithEvents: $0.results) }.drive(me.agendaEventsTableView.rx.items(dataSource: me.tableViewDataSource)),
                 state.map { $0.title }.drive(onNext: { me.navigationController!.navigationBar.topItem!.title = $0 }, onCompleted: nil, onDisposed: nil)
@@ -49,8 +49,8 @@ class AgendaViewController: UIViewController {
         
         
         Driver.system(
-            initialState: State.empty,
-            reduce: State.reduce,
+            initialState: AgendaListState.empty,
+            reduce: AgendaListState.reduce,
             feedback:
             // UI, user feedback
             bindUI,
@@ -59,7 +59,7 @@ class AgendaViewController: UIViewController {
                 if(isLoadingData){
                     return self.agendaDataSource.loadDaysWithEvents(day: Day.getToday())
                         .asDriver(onErrorJustReturn: .failure(.offline))
-                        .map(Event.response)
+                        .map(AgendaListEvent.response)
                 } else {
                     return Driver.empty()
                 }

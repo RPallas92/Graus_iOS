@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct State {
+struct AgendaListState {
     var results: DaysWithEvents
     var lastError: ApiError?
     var isLoadingData = false
@@ -16,18 +16,18 @@ struct State {
     var title = "Agenda"
 }
 
-enum Event {
+enum AgendaListEvent {
     case startLoadingEvents()
     case response(LoadDaysWithEventsResponse)
 }
 
 
 // transitions
-extension State {
-    static var empty: State {
-        return State( results: DaysWithEvents(), lastError: nil, isLoadingData: false, shouldLoadData: true, title: "Agenda")
+extension AgendaListState {
+    static var empty: AgendaListState {
+        return AgendaListState( results: DaysWithEvents(), lastError: nil, isLoadingData: false, shouldLoadData: true, title: "Agenda")
     }
-    static func reduce(state: State, event: Event) -> State {
+    static func reduce(state: AgendaListState, event: AgendaListEvent) -> AgendaListState {
         switch event {
         case .startLoadingEvents():
             var result = state
@@ -52,6 +52,6 @@ extension State {
 }
 
 // queries - rpallas: I understand this as computed values that UI elements query to the State
-extension State {
+extension AgendaListState {
     
 }
