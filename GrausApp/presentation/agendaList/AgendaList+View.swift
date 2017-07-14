@@ -87,6 +87,25 @@ class AgendaViewController: UIViewController {
             return ds.sectionModels[index].header
         }
         
+        agendaEventsTableView.rx.itemSelected
+            .map { indexPath in
+                return (indexPath, self.tableViewDataSource[indexPath])
+            }
+            .subscribe(onNext: { indexPath, agendaEvent in
+                self.showDetail(event: agendaEvent)
+            })
+            .disposed(by: disposeBag)
+        
+        
+    }
+    
+    func showDetail(event:AgendaEvent){
+        if let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "detail") as? AgendaDetailViewController {
+            //TO-DO set the event
+            if let navigator = navigationController {
+                navigator.pushViewController(viewController, animated: true)
+            }
+        }
     }
     
 }

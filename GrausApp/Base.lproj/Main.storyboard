@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="49e-Tb-3d3">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12118" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="49e-Tb-3d3">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -44,7 +44,7 @@
                                 <rect key="frame" x="0.0" y="28" width="375" height="74"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="roZ-nL-jGY" id="KOs-CN-HCE">
-                                    <rect key="frame" x="0.0" y="0.0" width="342" height="74"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="342" height="73.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="WWw-If-Bpf">
@@ -103,7 +103,7 @@ Title 2</string>
                                 <rect key="frame" x="0.0" y="102" width="375" height="523"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="gY2-Gd-dFg" id="zT2-5F-Nw3">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="523"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="522.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="7" translatesAutoresizingMaskIntoConstraints="NO" id="wsZ-ke-cba">
@@ -135,7 +135,6 @@ Title 2</string>
                     <navigationItem key="navigationItem" id="3mF-Sb-rpq"/>
                     <connections>
                         <outlet property="agendaEventsTableView" destination="D11-oS-jdc" id="XnN-p0-NUu"/>
-                        <segue destination="Hcg-9z-jP7" kind="showDetail" id="L22-To-yJD"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W5J-7L-Pyd" sceneMemberID="firstResponder"/>
@@ -246,7 +245,7 @@ Title 2</string>
         <!--Event Info-->
         <scene sceneID="jj6-DH-m6o">
             <objects>
-                <tableViewController storyboardIdentifier="detail" id="Hcg-9z-jP7" customClass="AgendaDetailViewController" customModule="GrausApp" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="detail" hidesBottomBarWhenPushed="YES" id="Hcg-9z-jP7" customClass="AgendaDetailViewController" customModule="GrausApp" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="none" rowHeight="200" sectionHeaderHeight="22" sectionFooterHeight="22" id="IYc-1Y-HWn">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -390,9 +389,6 @@ Title2</string>
                                                     <state key="normal">
                                                         <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     </state>
-                                                    <connections>
-                                                        <action selector="openMaps:" destination="Hcg-9z-jP7" eventType="touchUpInside" id="i9w-Gh-Qvq"/>
-                                                    </connections>
                                                 </button>
                                             </subviews>
                                             <gestureRecognizers/>
@@ -476,9 +472,6 @@ Title2</string>
                                                     <state key="normal" title="Registration &amp; More info">
                                                         <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     </state>
-                                                    <connections>
-                                                        <action selector="openWeb:" destination="Hcg-9z-jP7" eventType="touchUpInside" id="5Bg-VX-1AB"/>
-                                                    </connections>
                                                 </button>
                                             </subviews>
                                             <constraints>
@@ -496,10 +489,6 @@ Title2</string>
                                 </cells>
                             </tableViewSection>
                         </sections>
-                        <connections>
-                            <outlet property="dataSource" destination="Hcg-9z-jP7" id="aaN-gS-6yz"/>
-                            <outlet property="delegate" destination="Hcg-9z-jP7" id="puf-ic-9fw"/>
-                        </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Event Info" id="e1L-X8-gTS">
                         <barButtonItem key="rightBarButtonItem" id="dlL-4R-1ku">
@@ -514,9 +503,6 @@ Title2</string>
                                 <state key="selected" title="Going" image="goingMark">
                                     <color key="titleColor" red="0.18039215689999999" green="0.80000000000000004" blue="0.4431372549" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
-                                <connections>
-                                    <action selector="updateGoing:" destination="Hcg-9z-jP7" eventType="touchUpInside" id="i2r-Yb-O4a"/>
-                                </connections>
                             </button>
                         </barButtonItem>
                     </navigationItem>
@@ -526,7 +512,6 @@ Title2</string>
                         <outlet property="address3Label" destination="N8u-w3-m28" id="Kf0-kb-OTU"/>
                         <outlet property="dateLabel" destination="09A-x5-0uw" id="n47-PP-JHS"/>
                         <outlet property="detailsLabel" destination="lFc-QM-rxL" id="HEz-bl-63q"/>
-                        <outlet property="goingButton" destination="qsC-hQ-Kk6" id="OGI-WM-Zu4"/>
                         <outlet property="hoursLabel" destination="GtN-8p-5FX" id="qDD-G2-TNa"/>
                         <outlet property="logoImageView" destination="G9P-zR-epa" id="nCV-a0-nXe"/>
                         <outlet property="mapView" destination="dPQ-Xf-HYZ" id="pt3-bM-wcX"/>
@@ -534,26 +519,10 @@ Title2</string>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="h35-Y8-Xr5" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <tapGestureRecognizer id="Iyx-ow-O2T">
-                    <connections>
-                        <action selector="openLyft:" destination="Hcg-9z-jP7" id="2tp-aK-qIy"/>
-                    </connections>
-                </tapGestureRecognizer>
-                <tapGestureRecognizer id="Tew-IQ-NMt">
-                    <connections>
-                        <action selector="openCal:" destination="Hcg-9z-jP7" id="ewk-Ca-UZQ"/>
-                    </connections>
-                </tapGestureRecognizer>
-                <tapGestureRecognizer id="91C-Q2-BWo">
-                    <connections>
-                        <action selector="openMaps:" destination="Hcg-9z-jP7" id="lHG-8X-fXn"/>
-                    </connections>
-                </tapGestureRecognizer>
-                <tapGestureRecognizer id="DI5-lN-dk5">
-                    <connections>
-                        <action selector="openWeb:" destination="Hcg-9z-jP7" id="fQj-tw-WpT"/>
-                    </connections>
-                </tapGestureRecognizer>
+                <tapGestureRecognizer id="Iyx-ow-O2T"/>
+                <tapGestureRecognizer id="Tew-IQ-NMt"/>
+                <tapGestureRecognizer id="91C-Q2-BWo"/>
+                <tapGestureRecognizer id="DI5-lN-dk5"/>
             </objects>
             <point key="canvasLocation" x="2714" y="-320"/>
         </scene>
