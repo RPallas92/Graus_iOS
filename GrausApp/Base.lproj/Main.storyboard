@@ -425,30 +425,12 @@ Title2</string>
                                                     <color key="textColor" red="0.32549019610000002" green="0.32549019610000002" blue="0.32549019610000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Address2" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="1kB-yE-iaj">
-                                                    <rect key="frame" x="70" y="30" width="65" height="18"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                                    <color key="textColor" red="0.32549019610000002" green="0.32549019610000002" blue="0.32549019610000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Address3" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="N8u-w3-m28">
-                                                    <rect key="frame" x="70" y="48" width="65" height="18"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                                    <color key="textColor" red="0.32549019610000002" green="0.32549019610000002" blue="0.32549019610000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="DFh-mO-qzl" firstAttribute="top" secondItem="8ij-hk-cKS" secondAttribute="topMargin" constant="4" id="2r6-G3-nPq"/>
-                                                <constraint firstItem="1kB-yE-iaj" firstAttribute="leading" secondItem="8ij-hk-cKS" secondAttribute="leading" constant="70" id="3oO-S4-nuw"/>
                                                 <constraint firstItem="N8A-cd-h8D" firstAttribute="leading" secondItem="8ij-hk-cKS" secondAttribute="leading" constant="20" id="8xG-fA-WgC"/>
-                                                <constraint firstItem="N8u-w3-m28" firstAttribute="leading" secondItem="8ij-hk-cKS" secondAttribute="leading" constant="70" id="FA1-rV-hP7"/>
-                                                <constraint firstItem="N8u-w3-m28" firstAttribute="top" secondItem="1kB-yE-iaj" secondAttribute="bottom" id="HyB-VF-i1E"/>
                                                 <constraint firstItem="N8A-cd-h8D" firstAttribute="centerY" secondItem="8ij-hk-cKS" secondAttribute="centerY" id="P4F-lI-jfg"/>
-                                                <constraint firstItem="1kB-yE-iaj" firstAttribute="top" secondItem="DFh-mO-qzl" secondAttribute="bottom" id="PTw-eL-RgO"/>
-                                                <constraint firstAttribute="bottomMargin" secondItem="N8u-w3-m28" secondAttribute="bottom" constant="3" id="QBr-HF-XoT"/>
                                                 <constraint firstItem="DFh-mO-qzl" firstAttribute="leading" secondItem="8ij-hk-cKS" secondAttribute="leading" constant="70" id="SDS-jG-88S"/>
-                                                <constraint firstAttribute="centerY" secondItem="1kB-yE-iaj" secondAttribute="centerY" id="yV6-pX-SQM"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <gestureRecognizers/>
@@ -456,60 +438,13 @@ Title2</string>
                                             <outletCollection property="gestureRecognizers" destination="91C-Q2-BWo" appends="YES" id="HKU-1k-kOg"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="61" id="UTz-al-p3f">
-                                        <rect key="frame" x="0.0" y="903" width="375" height="61"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="UTz-al-p3f" id="4Z7-WM-Qjg">
-                                            <rect key="frame" x="0.0" y="0.0" width="342" height="61"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="E3j-cd-n08">
-                                                    <rect key="frame" x="20" y="8" width="302" height="45"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="45" id="vaN-qG-VQW"/>
-                                                    </constraints>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                                    <state key="normal" title="Registration &amp; More info">
-                                                        <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                    </state>
-                                                </button>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstItem="E3j-cd-n08" firstAttribute="top" secondItem="4Z7-WM-Qjg" secondAttribute="topMargin" id="AbF-Gy-IV3"/>
-                                                <constraint firstAttribute="bottomMargin" secondItem="E3j-cd-n08" secondAttribute="bottom" id="SM1-BQ-BTy"/>
-                                                <constraint firstItem="E3j-cd-n08" firstAttribute="leading" secondItem="4Z7-WM-Qjg" secondAttribute="leadingMargin" constant="12" id="anC-R7-D1j"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="E3j-cd-n08" secondAttribute="trailing" constant="12" id="sdu-Yo-f65"/>
-                                            </constraints>
-                                        </tableViewCellContentView>
-                                        <gestureRecognizers/>
-                                        <connections>
-                                            <outletCollection property="gestureRecognizers" destination="DI5-lN-dk5" appends="YES" id="iZk-1b-ORk"/>
-                                        </connections>
-                                    </tableViewCell>
                                 </cells>
                             </tableViewSection>
                         </sections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Event Info" id="e1L-X8-gTS">
-                        <barButtonItem key="rightBarButtonItem" id="dlL-4R-1ku">
-                            <inset key="imageInsets" minX="27" minY="19" maxX="0.0" maxY="0.0"/>
-                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="qsC-hQ-Kk6">
-                                <rect key="frame" x="507" y="11" width="73" height="22"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="6" maxY="0.0"/>
-                                <state key="normal" title="Going" image="notGoingMark">
-                                    <color key="titleColor" red="0.41568627450000001" green="0.46274509800000002" blue="0.86274509799999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                </state>
-                                <state key="selected" title="Going" image="goingMark">
-                                    <color key="titleColor" red="0.18039215689999999" green="0.80000000000000004" blue="0.4431372549" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                </state>
-                            </button>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="Event Info" id="e1L-X8-gTS"/>
                     <connections>
                         <outlet property="address1Label" destination="DFh-mO-qzl" id="juy-Mh-07f"/>
-                        <outlet property="address2Label" destination="1kB-yE-iaj" id="3K5-dA-SP3"/>
-                        <outlet property="address3Label" destination="N8u-w3-m28" id="Kf0-kb-OTU"/>
                         <outlet property="dateLabel" destination="09A-x5-0uw" id="n47-PP-JHS"/>
                         <outlet property="detailsLabel" destination="lFc-QM-rxL" id="HEz-bl-63q"/>
                         <outlet property="hoursLabel" destination="GtN-8p-5FX" id="qDD-G2-TNa"/>
@@ -529,9 +464,7 @@ Title2</string>
     </scenes>
     <resources>
         <image name="first" width="30" height="30"/>
-        <image name="goingMark" width="16" height="16"/>
         <image name="location" width="25" height="34"/>
-        <image name="notGoingMark" width="16" height="16"/>
         <image name="second" width="30" height="30"/>
     </resources>
 </document>

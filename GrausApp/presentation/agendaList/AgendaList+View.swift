@@ -101,7 +101,7 @@ class AgendaViewController: UIViewController {
     
     func showDetail(event:AgendaEvent){
         if let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "detail") as? AgendaDetailViewController {
-            //TO-DO set the event
+            viewController.agendaEvent = event
             if let navigator = navigationController {
                 navigator.pushViewController(viewController, animated: true)
             }
