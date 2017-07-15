@@ -28,6 +28,14 @@ class AgendaDetailViewController: UITableViewController {
     @IBOutlet weak var address1Label: UILabel!
     
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        initUI()
+        
+    }
+    
+    
     func initDetailsLabel(){
         let font = UIFont.systemFont(ofSize: 15.0, weight: UIFontWeightLight)
          let paragraphStyle = NSMutableParagraphStyle()
@@ -55,15 +63,7 @@ class AgendaDetailViewController: UITableViewController {
     
     
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        // Self sizing cells
-        tableView.estimatedRowHeight = 100.0
-        tableView.rowHeight = UITableViewAutomaticDimension
-        
-        initUI()
-        
-    }
+
     
     func initUI(){
         titleLabel.text = agendaEvent.name
@@ -73,7 +73,6 @@ class AgendaDetailViewController: UITableViewController {
             logoImageView.pin_setImage(from: url)
         }
         
-        
         dateLabel.text = agendaEvent.date.toReadableString()
         hoursLabel.text = agendaEvent.date.toHourString()
         address1Label.text = agendaEvent.city
@@ -82,24 +81,6 @@ class AgendaDetailViewController: UITableViewController {
         initDetailsLabel()
         
     }
-    
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = super.tableView(tableView, cellForRowAt: indexPath)
-        if indexPath.row == 6 { // Xcode Bug #2
-            cell.backgroundColor = UIColor(red: 106.0/255.0, green: 118.0/255.0, blue: 220.0/255.0, alpha: 1.0)
-        }
-        return cell
-    }
-    
-    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return UITableViewAutomaticDimension
-    }
-    
-    
-    
-    
-    
-    
     
     
 }

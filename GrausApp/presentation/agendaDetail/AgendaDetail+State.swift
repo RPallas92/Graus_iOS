@@ -8,52 +8,36 @@
 
 import Foundation
 
-import Foundation
-
 struct AgendaDetailState {
-    var results: DaysWithEvents
-    var lastError: ApiError?
-    var isLoadingData = false
-    var shouldLoadData = true
-    var title = "Agenda"
+    var event: AgendaEvent?
+    var shouldLoadEvent = true
+    var title = "Info"
 }
 
 enum AgendaDetailEvent {
-    case startLoadingEvents()
-    case response(LoadDaysWithEventsResponse)
+    case startLoadingEvent()
+    case response(AgendaEvent)
 }
 
 
 // transitions
 extension AgendaDetailState {
     static var empty: AgendaDetailState {
-        return AgendaDetailState( results: DaysWithEvents(), lastError: nil, isLoadingData: false, shouldLoadData: true, title: "Agenda")
+        return AgendaDetailState(event: nil, shouldLoadEvent: true, title: "Info")
     }
     static func reduce(state: AgendaDetailState, event: AgendaDetailEvent) -> AgendaDetailState {
         switch event {
-        case .startLoadingEvents():
+        case .startLoadingEvent():
             var result = state
-            result.isLoadingData = true
-            result.shouldLoadData = false
+            result.shouldLoadEvent = false
+            result.event = nil
             return result
-        case .response(.success(let response)):
+        case .response(let agendaEvent):
             var result = state
-            result.results = response
-            result.lastError = nil
-            result.isLoadingData = false
-            result.shouldLoadData = false
+            result.event = agendaEvent
+            result.shouldLoadEvent = false
             return result
-        case .response(.failure(let error)):
-            var result = state
-            result.lastError = error
-            result.isLoadingData = false
-            result.shouldLoadData = false
-            return result
+
         }
     }
-}
-
-// queries - rpallas: I understand this as computed values that UI elements query to the State
-extension AgendaDetailState {
-    
 }
