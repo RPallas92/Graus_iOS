@@ -42,11 +42,11 @@ class AgendaViewController: UIViewController {
                 state.map { $0.title }.drive(onNext: { me.navigationController!.navigationBar.topItem!.title = $0 }, onCompleted: nil, onDisposed: nil)
             ]
             let events = [
-                triggerLoadData(state)
+                triggerLoadData(state),
+                me.agendaEventsTableView.rx.itemSelected.asDriver().map { me.tableViewDataSource[$0] }.map(AgendaListEvent.itemSelected)
             ]
             return UI.Bindings(subscriptions: subscriptions, events: events)
         }
-        
         
         Driver.system(
             initialState: AgendaListState.empty,
@@ -63,49 +63,38 @@ class AgendaViewController: UIViewController {
                 } else {
                     return Driver.empty()
                 }
+            }),
+            react(query: { $0.selectedEvent}, effects: { selectedEvent in
+                    return self.showDetail(event: selectedEvent)
+                    .asDriver(onErrorJustReturn: AgendaListEvent.detailShowed())
             })
             )
             .drive()
             .disposed(by: disposeBag)
-        
     }
     
-    
-    
     func initTableView(){
-
         agendaEventsTableView.register(UITableViewCell.self, forCellReuseIdentifier: "event")
-        
+
         tableViewDataSource.configureCell = { dataSource, tableView, indexPath, agendaEvent in
             let cell = tableView.dequeueReusableCell(withIdentifier: "agendaEvent") as! AgendaEventCell
             cell.event = agendaEvent
-            
             return cell
         }
         
         tableViewDataSource.titleForHeaderInSection = { ds, index in
             return ds.sectionModels[index].header
         }
-        
-        agendaEventsTableView.rx.itemSelected
-            .map { indexPath in
-                return (indexPath, self.tableViewDataSource[indexPath])
-            }
-            .subscribe(onNext: { indexPath, agendaEvent in
-                self.showDetail(event: agendaEvent)
-            })
-            .disposed(by: disposeBag)
-        
-        
     }
     
-    func showDetail(event:AgendaEvent){
+    func showDetail(event:AgendaEvent) -> Observable<AgendaListEvent>{
         if let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "detail") as? AgendaDetailViewController {
             viewController.agendaEvent = event
             if let navigator = navigationController {
                 navigator.pushViewController(viewController, animated: true)
             }
         }
+        return Observable.just(AgendaListEvent.detailShowed())
     }
     
 }
