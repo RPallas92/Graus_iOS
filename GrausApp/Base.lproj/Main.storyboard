@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12118" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="49e-Tb-3d3">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="49e-Tb-3d3">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -31,7 +31,7 @@
             </objects>
             <point key="canvasLocation" x="743" y="-1000"/>
         </scene>
-        <!--Agenda View Controller-->
+        <!--Agenda-->
         <scene sceneID="hNz-n2-bh7">
             <objects>
                 <viewController id="9pv-A4-QxB" customClass="AgendaViewController" customModule="GrausApp" customModuleProvider="target" sceneMemberID="viewController">
@@ -132,7 +132,7 @@ Title 2</string>
                         </prototypes>
                         <sections/>
                     </tableView>
-                    <navigationItem key="navigationItem" id="3mF-Sb-rpq"/>
+                    <navigationItem key="navigationItem" title="Agenda" id="3mF-Sb-rpq"/>
                     <connections>
                         <outlet property="agendaEventsTableView" destination="D11-oS-jdc" id="XnN-p0-NUu"/>
                     </connections>
@@ -242,10 +242,10 @@ Title 2</string>
             </objects>
             <point key="canvasLocation" x="749.60000000000002" y="-320.68965517241384"/>
         </scene>
-        <!--Event Info-->
+        <!--Info-->
         <scene sceneID="jj6-DH-m6o">
             <objects>
-                <tableViewController storyboardIdentifier="detail" hidesBottomBarWhenPushed="YES" id="Hcg-9z-jP7" customClass="AgendaDetailViewController" customModule="GrausApp" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="detail" title="Info" hidesBottomBarWhenPushed="YES" id="Hcg-9z-jP7" customClass="AgendaDetailViewController" customModule="GrausApp" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="none" rowHeight="200" sectionHeaderHeight="22" sectionFooterHeight="22" id="IYc-1Y-HWn">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -442,7 +442,7 @@ Title2</string>
                             </tableViewSection>
                         </sections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Event Info" id="e1L-X8-gTS"/>
+                    <navigationItem key="navigationItem" title="Info" id="e1L-X8-gTS"/>
                     <connections>
                         <outlet property="address1Label" destination="DFh-mO-qzl" id="juy-Mh-07f"/>
                         <outlet property="dateLabel" destination="09A-x5-0uw" id="n47-PP-JHS"/>

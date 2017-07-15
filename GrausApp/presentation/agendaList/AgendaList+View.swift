@@ -38,8 +38,7 @@ class AgendaViewController: UIViewController {
         
         let bindUI: (Driver<AgendaListState>) -> Driver<AgendaListEvent> = UI.bind(self) { me, state in
             let subscriptions = [
-                state.map { AgendaEventsSection.fromAgendaEvents(daysWithEvents: $0.results) }.drive(me.agendaEventsTableView.rx.items(dataSource: me.tableViewDataSource)),
-                state.map { $0.title }.drive(onNext: { me.navigationController!.navigationBar.topItem!.title = $0 }, onCompleted: nil, onDisposed: nil)
+                state.map { AgendaEventsSection.fromAgendaEvents(daysWithEvents: $0.results) }.drive(me.agendaEventsTableView.rx.items(dataSource: me.tableViewDataSource))
             ]
             let events = [
                 triggerLoadData(state),
@@ -55,18 +54,11 @@ class AgendaViewController: UIViewController {
             // UI, user feedback
             bindUI,
             // NoUI, automatic feedback
-            react(query: { $0.isLoadingData }, effects: { isLoadingData in
-                if(isLoadingData){
-                    return self.agendaDataSource.loadDaysWithEvents(day: Day.getToday())
-                        .asDriver(onErrorJustReturn: .failure(.offline))
-                        .map(AgendaListEvent.response)
-                } else {
-                    return Driver.empty()
-                }
+            react(query: { $0.isLoadingData }, effects: {
+                AgendaListFeedback.isLoadingDataReaction(isLoadingData: $0, eventsDataSource: self.agendaDataSource)
             }),
             react(query: { $0.selectedEvent}, effects: { selectedEvent in
-                    return self.showDetail(event: selectedEvent)
-                    .asDriver(onErrorJustReturn: AgendaListEvent.detailShowed())
+                AgendaListFeedback.itemSelectedReaction(selectedEvent: selectedEvent, navigationController: self.navigationController)
             })
             )
             .drive()
@@ -87,14 +79,5 @@ class AgendaViewController: UIViewController {
         }
     }
     
-    func showDetail(event:AgendaEvent) -> Observable<AgendaListEvent>{
-        if let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "detail") as? AgendaDetailViewController {
-            viewController.agendaEvent = event
-            if let navigator = navigationController {
-                navigator.pushViewController(viewController, animated: true)
-            }
-        }
-        return Observable.just(AgendaListEvent.detailShowed())
-    }
     
 }

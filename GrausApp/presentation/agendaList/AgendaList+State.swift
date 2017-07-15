@@ -13,7 +13,6 @@ struct AgendaListState {
     var lastError: ApiError?
     var isLoadingData = false
     var shouldLoadData = true
-    var title = "Agenda"
     var selectedEvent: AgendaEvent?
 }
 
@@ -28,7 +27,7 @@ enum AgendaListEvent {
 // transitions
 extension AgendaListState {
     static var empty: AgendaListState {
-        return AgendaListState( results: DaysWithEvents(), lastError: nil, isLoadingData: false, shouldLoadData: true, title: "Agenda", selectedEvent: nil)
+        return AgendaListState( results: DaysWithEvents(), lastError: nil, isLoadingData: false, shouldLoadData: true, selectedEvent: nil)
     }
     static func reduce(state: AgendaListState, event: AgendaListEvent) -> AgendaListState {
         switch event {
