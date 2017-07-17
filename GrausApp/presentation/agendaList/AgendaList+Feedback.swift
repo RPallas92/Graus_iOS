@@ -13,8 +13,8 @@ import RxFeedback
 
 struct AgendaListFeedback {
     
-    static func isLoadingDataReaction(isLoadingData: Bool, eventsDataSource: AgendaEventCloudDatasource) -> Driver<AgendaListEvent>{
-        if(isLoadingData){
+    static func isLoadingDataReaction(shouldLoadData: Bool, eventsDataSource: AgendaEventCloudDatasource) -> Driver<AgendaListEvent>{
+        if(shouldLoadData){
             return eventsDataSource.loadDaysWithEvents(day: Day.getToday())
                 .asDriver(onErrorJustReturn: .failure(.offline))
                 .map(AgendaListEvent.response)

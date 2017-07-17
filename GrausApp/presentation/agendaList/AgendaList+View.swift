@@ -27,21 +27,13 @@ class AgendaViewController: UIViewController {
 
         initTableView()
         
-        let triggerLoadData: (Driver<AgendaListState>) -> Driver<AgendaListEvent> = { state in
-            return state.flatMapLatest { state -> Driver<AgendaListEvent> in
-                if state.shouldLoadData {
-                    return Driver.just(AgendaListEvent.startLoadingEvents())
-                }
-                return Driver.empty()
-            }
-        }
         
         let bindUI: (Driver<AgendaListState>) -> Driver<AgendaListEvent> = UI.bind(self) { me, state in
             let subscriptions = [
                 state.map { AgendaEventsSection.fromAgendaEvents(daysWithEvents: $0.results) }.drive(me.agendaEventsTableView.rx.items(dataSource: me.tableViewDataSource))
             ]
             let events = [
-                triggerLoadData(state),
+                //triggerLoadData(state),
                 me.agendaEventsTableView.rx.itemSelected.asDriver().map { me.tableViewDataSource[$0] }.map(AgendaListEvent.itemSelected)
             ]
             return UI.Bindings(subscriptions: subscriptions, events: events)
@@ -54,8 +46,8 @@ class AgendaViewController: UIViewController {
             // UI, user feedback
             bindUI,
             // NoUI, automatic feedback
-            react(query: { $0.isLoadingData }, effects: {
-                AgendaListFeedback.isLoadingDataReaction(isLoadingData: $0, eventsDataSource: self.agendaDataSource)
+            react(query: { $0.shouldLoadData }, effects: {
+                AgendaListFeedback.isLoadingDataReaction(shouldLoadData: $0, eventsDataSource: self.agendaDataSource)
             }),
             react(query: { $0.selectedEvent}, effects: { selectedEvent in
                 AgendaListFeedback.itemSelectedReaction(selectedEvent: selectedEvent, navigationController: self.navigationController)
