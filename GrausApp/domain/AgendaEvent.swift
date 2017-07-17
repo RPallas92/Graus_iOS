@@ -35,6 +35,14 @@ struct AgendaEvent {
         self.date = date
     }
     
+    
+    func getUrl() -> URL?{
+        if let thumbnailUrl = self.imageThumbnailUrl {
+            return URL(string: thumbnailUrl)
+        }
+        return nil
+    }
+    
 }
 
 extension AgendaEvent: Equatable {}

@@ -10,7 +10,7 @@ import Foundation
 
 struct AgendaDetailState {
     var event: AgendaEvent?
-    var shouldLoadEvent = true
+    var shouldLoadData = true
 }
 
 enum AgendaDetailEvent {
@@ -22,19 +22,19 @@ enum AgendaDetailEvent {
 // transitions
 extension AgendaDetailState {
     static var empty: AgendaDetailState {
-        return AgendaDetailState(event: nil, shouldLoadEvent: true)
+        return AgendaDetailState(event: nil, shouldLoadData: true)
     }
     static func reduce(state: AgendaDetailState, event: AgendaDetailEvent) -> AgendaDetailState {
         switch event {
         case .startLoadingEvent():
             var result = state
-            result.shouldLoadEvent = false
+            result.shouldLoadData = false
             result.event = nil
             return result
         case .response(let agendaEvent):
             var result = state
             result.event = agendaEvent
-            result.shouldLoadEvent = false
+            result.shouldLoadData = false
             return result
 
         }

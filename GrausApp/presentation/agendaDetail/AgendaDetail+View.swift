@@ -16,8 +16,8 @@ import RxFeedback
 
 class AgendaDetailViewController: UITableViewController {
     
+    private let disposeBag = DisposeBag()
     var agendaEvent: AgendaEvent!
-    
     
     @IBOutlet weak var logoImageView: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!
@@ -31,20 +31,48 @@ class AgendaDetailViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        initUI()
+        let noUiEvents: (Driver<AgendaDetailState>) -> Driver<AgendaDetailEvent> = { state in
+            return state.flatMapLatest { state -> Driver<AgendaDetailEvent> in
+                return Driver.empty()
+            }
+        }
         
-    }
-    
-    
-    func initDetailsLabel(){
-        let font = UIFont.systemFont(ofSize: 15.0, weight: UIFontWeightLight)
-         let paragraphStyle = NSMutableParagraphStyle()
-         paragraphStyle.lineHeightMultiple = 20.0
-         paragraphStyle.maximumLineHeight = 20.0
-         paragraphStyle.minimumLineHeight = 20.0
-         let color = UIColor(red: 146.0/255.0, green: 146.0/255.0, blue: 146.0/255.0, alpha: 1.0)
-         let attributedDetails = NSMutableAttributedString(string: agendaEvent.description, attributes: [NSFontAttributeName: font, NSParagraphStyleAttributeName: paragraphStyle, NSForegroundColorAttributeName: color])
-         detailsLabel.attributedText = attributedDetails;
+        let bindUI: (Driver<AgendaDetailState>) -> Driver<AgendaDetailEvent> = UI.bind(self) { me, state in
+            let subscriptions = [
+                state.map { $0.event?.name }.drive(me.titleLabel.rx.text),
+                state.map { $0.event?.date.toReadableString() }.drive(me.dateLabel.rx.text),
+                state.map { $0.event?.date.toHourString() }.drive(me.hoursLabel.rx.text),
+                state.map { $0.event?.city }.drive(me.address1Label.rx.text),
+                state.map { me.getAtributeText(from: $0.event?.description) }.drive(me.detailsLabel.rx.attributedText),
+                state.map { $0.event?.getUrl() }.drive(onNext: { url in me.logoImageView.pin_setImage(from: url) } , onCompleted: nil, onDisposed: nil),
+                state.drive(onNext: { _ in me.initMapView() }, onCompleted: nil, onDisposed: nil)
+            ]
+            let events = [
+                noUiEvents(state)
+            ]
+            return UI.Bindings(subscriptions: subscriptions, events: events)
+        }
+        
+ 
+        Driver.system(
+            initialState: AgendaDetailState.empty,
+            reduce: AgendaDetailState.reduce,
+            feedback:
+            // UI, user feedback
+            bindUI,
+            // NoUI, automatic feedback
+            react(query: { $0.shouldLoadData}, effects: { shouldLoadData in
+                if(shouldLoadData){
+                   return Driver.just(self.agendaEvent)
+                    .map(AgendaDetailEvent.response)
+                }
+                return Driver.empty()
+            })
+            )
+            .drive()
+            .disposed(by: disposeBag)
+        
+        
     }
     
     
@@ -58,29 +86,17 @@ class AgendaDetailViewController: UITableViewController {
         let annotation = MKPointAnnotation()
         annotation.coordinate = CLLocationCoordinate2DMake(CLLocationDegrees(agendaEvent.lat), CLLocationDegrees(agendaEvent.lon))
         mapView.addAnnotation(annotation)
-        
     }
     
-    
-    
+    func getAtributeText(from text: String?) -> NSMutableAttributedString{
+        let font = UIFont.systemFont(ofSize: 15.0, weight: UIFontWeightLight)
+        let paragraphStyle = NSMutableParagraphStyle()
+        paragraphStyle.lineHeightMultiple = 20.0
+        paragraphStyle.maximumLineHeight = 20.0
+        paragraphStyle.minimumLineHeight = 20.0
+        let color = UIColor(red: 146.0/255.0, green: 146.0/255.0, blue: 146.0/255.0, alpha: 1.0)
+        return NSMutableAttributedString(string: text ?? "", attributes: [NSFontAttributeName: font, NSParagraphStyleAttributeName: paragraphStyle, NSForegroundColorAttributeName: color])
+    }
 
-    
-    func initUI(){
-        titleLabel.text = agendaEvent.name
-        
-        if let thumbnailUrl = agendaEvent.imageThumbnailUrl {
-            let url = URL(string: thumbnailUrl)
-            logoImageView.pin_setImage(from: url)
-        }
-        
-        dateLabel.text = agendaEvent.date.toReadableString()
-        hoursLabel.text = agendaEvent.date.toHourString()
-        address1Label.text = agendaEvent.city
-        
-        initMapView()
-        initDetailsLabel()
-        
-    }
-    
     
 }
