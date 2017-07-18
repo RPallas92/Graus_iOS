@@ -55,23 +55,18 @@ class AgendaDetailViewController: UITableViewController {
         
  
         Driver.system(
-            initialState: AgendaDetailState.empty,
-            reduce: AgendaDetailState.reduce,
+            initialState:
+                AgendaDetailState.empty,
+            reduce:
+                AgendaDetailState.reduce,
             feedback:
-            // UI, user feedback
-            bindUI,
-            // NoUI, automatic feedback
-            react(query: { $0.shouldLoadData}, effects: { shouldLoadData in
-                if(shouldLoadData){
-                   return Driver.just(self.agendaEvent)
-                    .map(AgendaDetailEvent.response)
-                }
-                return Driver.empty()
-            })
+                // UI, user feedback
+                bindUI,
+                // NoUI, automatic feedback
+                AgendaDetailFeedback.shouldLoadDataReaction(agendaEvent: self.agendaEvent)
             )
-            .drive()
-            .disposed(by: disposeBag)
-        
+        .drive()
+        .disposed(by: disposeBag)
         
     }
     

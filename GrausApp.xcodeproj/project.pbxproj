@@ -59,6 +59,8 @@
 		96B0C2291E99452E004A3817 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 96B0C2271E99452E004A3817 /* LaunchScreen.storyboard */; };
 		96B0C2341E99452F004A3817 /* GrausAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96B0C2331E99452F004A3817 /* GrausAppTests.swift */; };
 		96B0C23F1E99452F004A3817 /* GrausAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96B0C23E1E99452F004A3817 /* GrausAppUITests.swift */; };
+		96C285591F1DD0710067DD6C /* AgendaDetail+Feedback.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96C285581F1DD0710067DD6C /* AgendaDetail+Feedback.swift */; };
+		96C2855A1F1DD0740067DD6C /* AgendaDetail+Feedback.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96C285581F1DD0710067DD6C /* AgendaDetail+Feedback.swift */; };
 		A9E56748D546F94C2FE4EC5D /* Pods_GrausApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6B42EB2531ED1FCD883EA6FE /* Pods_GrausApp.framework */; };
 		BE2F8D9A37EEF985F99D8494 /* Pods_GrausApp_GrausAppTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB0FE8E8A6A84675C3D6D51B /* Pods_GrausApp_GrausAppTests.framework */; };
 		F5274186E32B9F9F4FF50A54 /* Pods_GrausAppTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A154F281F433613A68644BE3 /* Pods_GrausAppTests.framework */; };
@@ -122,6 +124,7 @@
 		96B0C23A1E99452F004A3817 /* GrausAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GrausAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		96B0C23E1E99452F004A3817 /* GrausAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GrausAppUITests.swift; sourceTree = "<group>"; };
 		96B0C2401E99452F004A3817 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		96C285581F1DD0710067DD6C /* AgendaDetail+Feedback.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "AgendaDetail+Feedback.swift"; sourceTree = "<group>"; };
 		9FBF73ADBDC794D106989237 /* Pods-GrausAppUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GrausAppUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-GrausAppUITests/Pods-GrausAppUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		A154F281F433613A68644BE3 /* Pods_GrausAppTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GrausAppTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DB0FE8E8A6A84675C3D6D51B /* Pods_GrausApp_GrausAppTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GrausApp_GrausAppTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -216,6 +219,7 @@
 			children = (
 				412342861F0A9E6200708AEF /* AgendaDetail+State.swift */,
 				412342871F0A9E6200708AEF /* AgendaDetail+View.swift */,
+				96C285581F1DD0710067DD6C /* AgendaDetail+Feedback.swift */,
 			);
 			path = agendaDetail;
 			sourceTree = "<group>";
@@ -659,6 +663,7 @@
 				412342741F0A94FF00708AEF /* AgendaList+State.swift in Sources */,
 				967FA7E51F040DC600CFEF56 /* Day+Mapper.swift in Sources */,
 				966F13B01F050BA100C7E52C /* AppDelegate.swift in Sources */,
+				96C285591F1DD0710067DD6C /* AgendaDetail+Feedback.swift in Sources */,
 				419E07AF1EB3CC120053D793 /* AgendaEvent.swift in Sources */,
 				967FA7ED1F040DD500CFEF56 /* LoadDaysResponse.swift in Sources */,
 				967F928F1EBDD1920057C70B /* Result.swift in Sources */,
@@ -692,6 +697,7 @@
 				967FA7F01F040DE200CFEF56 /* Day+Mapper.swift in Sources */,
 				967F92A31EBDEE8E0057C70B /* Result.swift in Sources */,
 				412342731F0A94FF00708AEF /* AgendaList+Feedback.swift in Sources */,
+				96C2855A1F1DD0740067DD6C /* AgendaDetail+Feedback.swift in Sources */,
 				967FA7EF1F040DDF00CFEF56 /* AgendaEvent+Mapper.swift in Sources */,
 				4123428B1F0A9E6200708AEF /* AgendaDetail+View.swift in Sources */,
 				412342791F0A94FF00708AEF /* AgendaEventSection+Mapper.swift in Sources */,
