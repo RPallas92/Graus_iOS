@@ -13,24 +13,47 @@ import RxFeedback
 
 struct AgendaListFeedback {
     
-    static func isLoadingDataReaction(shouldLoadData: Bool, eventsDataSource: AgendaEventCloudDatasource) -> Driver<AgendaListEvent>{
-        if(shouldLoadData){
-            return eventsDataSource.loadDaysWithEvents(day: Day.getToday())
-                .asDriver(onErrorJustReturn: .failure(.offline))
-                .map(AgendaListEvent.response)
-        } else {
-            return Driver.empty()
-        }
+    //Reactions
+    static func shouldLoadDataReaction(agendaDataSource: AgendaEventCloudDatasource) -> (Driver<AgendaListState>) -> Driver<AgendaListEvent> {
+        
+        let query:(AgendaListState) -> Bool?
+            = { $0.shouldLoadData }
+        
+        let effects:(Bool) -> Driver<AgendaListEvent>
+            = { shouldLoadDataEffects(shouldLoadData: $0, eventsDataSource: agendaDataSource) }
+        
+        return react(query: query, effects: effects)
     }
     
-    
-    static func itemSelectedReaction(selectedEvent: AgendaEvent, navigationController: UINavigationController?) -> Driver<AgendaListEvent> {
-        return showDetail(event: selectedEvent, navigationController: navigationController)
-            .asDriver(onErrorJustReturn: AgendaListEvent.detailShowed())
+    static func selectedEventReaction(navigationController: UINavigationController?) -> (Driver<AgendaListState>) -> Driver<AgendaListEvent> {
+        
+        let query:(AgendaListState) -> AgendaEvent?
+            = { $0.selectedEvent}
+        
+        let effects:(AgendaEvent) -> Driver<AgendaListEvent>
+            = { selectedEventEffects(selectedEvent: $0, navigationController: navigationController)}
+        
+        return react(query:query, effects: effects)
     }
-
 }
 
+
+
+//Effects
+fileprivate func shouldLoadDataEffects(shouldLoadData: Bool, eventsDataSource: AgendaEventCloudDatasource) -> Driver<AgendaListEvent>{
+    if(shouldLoadData){
+        return eventsDataSource.loadDaysWithEvents(day: Day.getToday())
+            .asDriver(onErrorJustReturn: .failure(.offline))
+            .map(AgendaListEvent.response)
+    } else {
+        return Driver.empty()
+    }
+}
+
+fileprivate func selectedEventEffects(selectedEvent: AgendaEvent, navigationController: UINavigationController?) -> Driver<AgendaListEvent> {
+    return showDetail(event: selectedEvent, navigationController: navigationController)
+        .asDriver(onErrorJustReturn: AgendaListEvent.detailShowed())
+}
 
 //Helper funcs
 fileprivate func showDetail(event:AgendaEvent, navigationController: UINavigationController?) -> Observable<AgendaListEvent>{

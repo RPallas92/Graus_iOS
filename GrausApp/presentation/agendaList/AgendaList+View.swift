@@ -33,29 +33,28 @@ class AgendaViewController: UIViewController {
                 state.map { AgendaEventsSection.fromAgendaEvents(daysWithEvents: $0.results) }.drive(me.agendaEventsTableView.rx.items(dataSource: me.tableViewDataSource))
             ]
             let events = [
-                //triggerLoadData(state),
                 me.agendaEventsTableView.rx.itemSelected.asDriver().map { me.tableViewDataSource[$0] }.map(AgendaListEvent.itemSelected)
             ]
             return UI.Bindings(subscriptions: subscriptions, events: events)
         }
         
         Driver.system(
-            initialState: AgendaListState.empty,
-            reduce: AgendaListState.reduce,
+            initialState:
+                AgendaListState.empty,
+            reduce:
+                AgendaListState.reduce,
             feedback:
-            // UI, user feedback
-            bindUI,
-            // NoUI, automatic feedback
-            react(query: { $0.shouldLoadData }, effects: {
-                AgendaListFeedback.isLoadingDataReaction(shouldLoadData: $0, eventsDataSource: self.agendaDataSource)
-            }),
-            react(query: { $0.selectedEvent}, effects: { selectedEvent in
-                AgendaListFeedback.itemSelectedReaction(selectedEvent: selectedEvent, navigationController: self.navigationController)
-            })
+                // UI, user feedback
+                bindUI,
+                // NoUI, automatic feedback
+                AgendaListFeedback.shouldLoadDataReaction(agendaDataSource: self.agendaDataSource),
+                AgendaListFeedback.selectedEventReaction(navigationController: navigationController)
             )
-            .drive()
-            .disposed(by: disposeBag)
+        .drive()
+        .disposed(by: disposeBag)
+        
     }
+    
     
     func initTableView(){
         agendaEventsTableView.register(UITableViewCell.self, forCellReuseIdentifier: "event")
@@ -70,6 +69,4 @@ class AgendaViewController: UIViewController {
             return ds.sectionModels[index].header
         }
     }
-    
-    
 }
