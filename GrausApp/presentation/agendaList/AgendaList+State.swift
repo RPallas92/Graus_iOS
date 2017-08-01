@@ -19,6 +19,7 @@ enum AgendaListEvent {
     case response(LoadDaysWithEventsResponse)
     case itemSelected(AgendaEvent)
     case detailShowed()
+    case refreshEvents()
 }
 
 
@@ -49,6 +50,10 @@ extension AgendaListState {
         case .detailShowed():
             var result = state
             result.selectedEvent = nil
+            return result
+        case .refreshEvents():
+            var result = state
+            result.shouldLoadData = true
             return result
         }
     }
