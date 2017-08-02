@@ -35,6 +35,18 @@ struct AgendaListFeedback {
         
         return react(query:query, effects: effects)
     }
+    
+    static func loadEventsResponseReaction(refreshControl: UIRefreshControl) -> (Driver<AgendaListState>) -> Driver<AgendaListEvent>  {
+        let query:(AgendaListState) -> Bool?
+            = {
+                $0.isRefreshed
+        }
+        let effects:(Bool) -> Driver<AgendaListEvent>
+            = { refreshFinishedEffects(refreshHasFinished: $0, refreshControl: refreshControl)}
+        
+        return react(query:query, effects: effects)
+
+    }
 }
 
 
@@ -53,6 +65,16 @@ fileprivate func shouldLoadDataEffects(shouldLoadData: Bool, eventsDataSource: A
 fileprivate func selectedEventEffects(selectedEvent: AgendaEvent, navigationController: UINavigationController?) -> Driver<AgendaListEvent> {
     return showDetail(event: selectedEvent, navigationController: navigationController)
         .asDriver(onErrorJustReturn: AgendaListEvent.detailShowed())
+}
+
+fileprivate func refreshFinishedEffects(refreshHasFinished: Bool, refreshControl: UIRefreshControl) -> Driver<AgendaListEvent> {
+    if refreshHasFinished {
+        refreshControl.endRefreshing()
+        return Driver.just(AgendaListEvent.refreshFinished())
+    } else {
+        return Driver.empty()
+    }
+    
 }
 
 //Helper funcs

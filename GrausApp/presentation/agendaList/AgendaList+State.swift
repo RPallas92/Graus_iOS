@@ -12,6 +12,7 @@ struct AgendaListState {
     var results: DaysWithEvents
     var lastError: ApiError?
     var shouldLoadData = true
+    var isRefreshed = false
     var selectedEvent: AgendaEvent?
 }
 
@@ -20,13 +21,14 @@ enum AgendaListEvent {
     case itemSelected(AgendaEvent)
     case detailShowed()
     case refreshEvents()
+    case refreshFinished()
 }
 
 
 // transitions
 extension AgendaListState {
     static var empty: AgendaListState {
-        return AgendaListState( results: DaysWithEvents(), lastError: nil, shouldLoadData: true, selectedEvent: nil)
+        return AgendaListState( results: DaysWithEvents(), lastError: nil, shouldLoadData: true, isRefreshed: false, selectedEvent: nil)
     }
     static func reduce(state: AgendaListState, event: AgendaListEvent) -> AgendaListState {
         switch event {
@@ -36,12 +38,14 @@ extension AgendaListState {
             result.lastError = nil
             result.shouldLoadData = false
             result.selectedEvent = nil
+            result.isRefreshed = true
             return result
         case .response(.failure(let error)):
             var result = state
             result.lastError = error
             result.shouldLoadData = false
             result.selectedEvent = nil
+            result.isRefreshed = true
             return result
         case .itemSelected(let agendaEvent):
             var result = state
@@ -53,7 +57,13 @@ extension AgendaListState {
             return result
         case .refreshEvents():
             var result = state
+            result.isRefreshed = false
             result.shouldLoadData = true
+            return result
+        case .refreshFinished():
+            var result = state
+            result.shouldLoadData = false
+            result.isRefreshed = true
             return result
         }
     }

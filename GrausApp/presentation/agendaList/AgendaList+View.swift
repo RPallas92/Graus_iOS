@@ -51,11 +51,12 @@ class AgendaViewController: UIViewController {
                 bindUI,
                 // NoUI, automatic feedback
                 AgendaListFeedback.shouldLoadDataReaction(agendaDataSource: self.agendaDataSource),
-                AgendaListFeedback.selectedEventReaction(navigationController: navigationController)
+                AgendaListFeedback.selectedEventReaction(navigationController: navigationController),
+                AgendaListFeedback.loadEventsResponseReaction(refreshControl: self.refreshControl)
             )
         .drive()
         .disposed(by: disposeBag)
-        
+                
     }
     
     
