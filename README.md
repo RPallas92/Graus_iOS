@@ -11,5 +11,7 @@ The approach for the app is a Clean architecture with RxFeedback for the present
 ### Clean architecture
 
 ### RxFeedback
+<img src="https://raw.githubusercontent.com/kzaher/rxswiftcontent/master/RxFeedback.png" width="500px">
+
 
 Work in progress
