@@ -34,6 +34,11 @@ extension URLSession {
             .rx.response(request: URLRequest(url: url))
             .retry(3)
             .map(Day.parse)
+            .map { loadDaysResponse in
+                let cacheDatasource = AgendaEventCacheDatasource()
+                cacheDatasource.insertDays(daysResponse: loadDaysResponse)
+                return loadDaysResponse
+            }
     }
     
     func loadAgendaEvents(day: Day) -> Observable<LoadAgendaEventsResponse>{

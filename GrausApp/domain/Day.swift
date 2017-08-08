@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import Cache
 
 typealias Day = Date
 
@@ -33,5 +34,14 @@ extension Day {
         let date = Date()
         let cal = Calendar(identifier: .gregorian)
         return cal.startOfDay(for: date)
+    }
+    
+    static func fromString(dateString: String) -> Day {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd"
+        if let date = dateFormatter.date(from: dateString) {
+            return date
+        }
+        return Date()
     }
 }

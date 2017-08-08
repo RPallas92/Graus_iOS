@@ -11,6 +11,7 @@ target 'GrausApp' do
   pod 'RxFeedback', :git => 'https://github.com/kzaher/RxFeedback.git', :tag => '0.2.0'
   pod 'RxDataSources', '~> 1.0'
   pod 'PINRemoteImage', '~> 2.1'
+  pod 'Cache'
 
 
   target 'GrausAppTests' do

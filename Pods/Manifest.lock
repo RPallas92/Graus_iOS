@@ -1,4 +1,6 @@
 PODS:
+  - Cache (3.3.0):
+    - SwiftHash (~> 1.4.0)
   - FLAnimatedImage (1.0.12)
   - PINCache (2.3)
   - PINRemoteImage (2.1.4):
@@ -21,8 +23,10 @@ PODS:
   - RxSwift (3.4.1)
   - RxTest (3.4.1):
     - RxSwift (~> 3.4)
+  - SwiftHash (1.4.0)
 
 DEPENDENCIES:
+  - Cache
   - PINRemoteImage (~> 2.1)
   - RxBlocking
   - RxCocoa
@@ -42,6 +46,7 @@ CHECKOUT OPTIONS:
     :tag: 0.2.0
 
 SPEC CHECKSUMS:
+  Cache: 871805a8a7268feac34f5c10c54506801f0bd4cd
   FLAnimatedImage: 4a0b56255d9b05f18b6dd7ee06871be5d3b89e31
   PINCache: ce36ed282031b92fc7733ffe831f474ff80fddc2
   PINRemoteImage: 4ac4011c5caefd6befd99758e09becede05d3226
@@ -51,7 +56,8 @@ SPEC CHECKSUMS:
   RxFeedback: ebe805afd871e2cbbf20ff150a02056083a38dea
   RxSwift: 656f8fbeca5bc372121a72d9ebdd3cd3bc0ffade
   RxTest: a6fd6e4069face7c6488f96f6c42296b3e44db48
+  SwiftHash: acf0f29032309a5c7a7f625595eade1aca97aca2
 
-PODFILE CHECKSUM: 43620f7008a3c7e97f9f0f44f55580d735951085
+PODFILE CHECKSUM: 20bf097c0ebf7dcc54cd852313d4fd50a839dca9
 
 COCOAPODS: 1.2.1
