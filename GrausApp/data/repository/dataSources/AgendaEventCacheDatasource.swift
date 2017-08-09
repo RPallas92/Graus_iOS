@@ -20,15 +20,40 @@ class AgendaEventCacheDatasource: AgendaEventDatasourceProtocol {
     
     
     func loadDays() -> Observable<LoadDaysResponse> {
-        return URLSession.shared.loadDays()
+        let cachedDays: Array<Day>? = (cache.object(forKey: daysKey) as CacheArray<Day>?)?.elements
+        if let days = cachedDays {
+            let loadDaysResponse = LoadDaysResponse.success(days)
+            return Observable.just(loadDaysResponse)
+        }
+        return Observable.just(LoadDaysResponse.failure(.internalError))
     }
     
     func loadAgendaEvents(day: Day) -> Observable<LoadAgendaEventsResponse> {
-        return URLSession.shared.loadAgendaEvents(day: day)
+        let cachedAgendaEvents: Array<AgendaEvent>? = (cache.object(forKey: eventsForDayKey) as CacheArray<AgendaEvent>?)?.elements
+        if let agendaEvents = cachedAgendaEvents {
+            let loadAgendaEventsResponse = LoadAgendaEventsResponse.success(agendaEvents)
+            return Observable.just(loadAgendaEventsResponse)
+        }
+        return Observable.just(LoadAgendaEventsResponse.failure(.internalError))
     }
     
     func loadDaysWithEvents(day: Day) -> Observable<LoadDaysWithEventsResponse> {
-        return URLSession.shared.loadDaysWithEvents(day: day)
+        let cachedJson: JSON? = cache.object(forKey: daysWithEventsKey)
+        if let json = cachedJson {
+            var daysWithEvents: DaysWithEvents
+            
+            switch json {
+            case .dictionary(let jsonDict):
+                daysWithEvents = DaysWithEvents.fromJsonDict(jsonDict: jsonDict)
+            default:
+                daysWithEvents = DaysWithEvents()
+            }
+            
+            let loadDaysWithEventsResponse = LoadDaysWithEventsResponse.success(daysWithEvents)
+            return Observable.just(loadDaysWithEventsResponse)
+        }
+        
+        return Observable.just(LoadDaysWithEventsResponse.failure(.internalError))
     }
     
     func clearCache() {
@@ -60,7 +85,7 @@ class AgendaEventCacheDatasource: AgendaEventDatasourceProtocol {
         case .success(let agendaEvents):
             let object = CacheArray(elements: agendaEvents)
             do {
-               try cache.addObject(object, forKey: eventsForDayKey)
+                try cache.addObject(object, forKey: eventsForDayKey)
             } catch {
                 print("Cannot insert days in cache")
             }
@@ -76,7 +101,7 @@ class AgendaEventCacheDatasource: AgendaEventDatasourceProtocol {
         switch daysWithEventsResponse {
         case .success(let daysWithEvents):
             do {
-                //try cache.addObject(JSON.dictionary(daysWithEvents), forKey: daysWithEventsKey)
+                try cache.addObject(JSON.dictionary(daysWithEvents.toJsonDict()), forKey: daysWithEventsKey)
             } catch {
                 print("Cannot insert days in cache")
             }

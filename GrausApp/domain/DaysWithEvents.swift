@@ -21,9 +21,10 @@ extension Dictionary where Key == Day, Value == Array<AgendaEvent> {
         return jsonDict
     }
     
-    func fromJsonDict(jsonDict: [String:[AgendaEvent]]) -> DaysWithEvents{
+    static func fromJsonDict(jsonDict: [String:Any]) -> DaysWithEvents{
         var dayWithEventsDict = DaysWithEvents()
-        for (dayString, agendaEvents) in jsonDict {
+        for (dayString, agendaEventsAny) in jsonDict {
+            let agendaEvents = agendaEventsAny as! [AgendaEvent]
             let day = Day.fromString(dateString: dayString)
             dayWithEventsDict[day] = agendaEvents
         }

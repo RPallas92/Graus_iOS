@@ -11,4 +11,5 @@ import Foundation
 enum ApiError: Error {
     case offline
     case serverError
+    case internalError
 }

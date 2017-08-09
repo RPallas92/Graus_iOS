@@ -11,34 +11,46 @@ import RxSwift
 import RxCocoa
 
 class AgendaEventCloudDatasource {
+    let cacheDatasource = AgendaEventCacheDatasource()
+    
     func loadDays() -> Observable<LoadDaysResponse> {
-        return URLSession.shared.loadDays()
+        return URLSession.shared.loadDays().map(cacheDays)
     }
     
     func loadAgendaEvents(day: Day) -> Observable<LoadAgendaEventsResponse> {
-        return URLSession.shared.loadAgendaEvents(day: day)
+        return URLSession.shared.loadAgendaEvents(day: day).map(cacheAgendaEvents)
     }
     
     func loadDaysWithEvents(day: Day) -> Observable<LoadDaysWithEventsResponse> {
-        return URLSession.shared.loadDaysWithEvents(day: day)
+        return URLSession.shared.loadDaysWithEvents(day: day).map(cacheDaysWithEvents)
+    }
+    
+    //Cache functions
+    private func cacheDays(loadDaysResponse: LoadDaysResponse) -> LoadDaysResponse {
+        cacheDatasource.insertDays(daysResponse: loadDaysResponse)
+        return loadDaysResponse
+    }
+    
+    private func cacheAgendaEvents(loadAgendaEventsResponse: LoadAgendaEventsResponse) -> LoadAgendaEventsResponse {
+        cacheDatasource.insertEventsFor(day: loadAgendaEventsResponse)
+        return loadAgendaEventsResponse
+    }
+    
+    private func cacheDaysWithEvents(loadDaysWithEventsResponse: LoadDaysWithEventsResponse) -> LoadDaysWithEventsResponse {
+        cacheDatasource.insertDaysWithEvents(daysWithEventsResponse: loadDaysWithEventsResponse)
+        return loadDaysWithEventsResponse
     }
 }
 
 extension URLSession {
     
     func loadDays() -> Observable<LoadDaysResponse> {
-        
         let url = URL(string: "http://ejeadefiestas.ejeadigital.com/index.php/api/fiestas/dias_con_eventos/id/200/format/json")!
-        
+    
         return self
             .rx.response(request: URLRequest(url: url))
             .retry(3)
             .map(Day.parse)
-            .map { loadDaysResponse in
-                let cacheDatasource = AgendaEventCacheDatasource()
-                cacheDatasource.insertDays(daysResponse: loadDaysResponse)
-                return loadDaysResponse
-            }
     }
     
     func loadAgendaEvents(day: Day) -> Observable<LoadAgendaEventsResponse>{
@@ -48,20 +60,16 @@ extension URLSession {
             .rx.response(request: URLRequest(url: url))
             .retry(3)
             .map(AgendaEvent.parse)
-        
-        
     }
     
     
     func loadDaysWithEvents(day: Day) -> Observable<LoadDaysWithEventsResponse> {
-        
-        
         func getNearDaysRange(days: [Day], day: Day) -> [Day]{
             let nearestDay = days.reduce(days.first) { old, current in
                 guard let oldDay = old else {
                     return current
                 }
-
+                
                 if (day > oldDay) {
                     return current
                 } else {
@@ -110,12 +118,7 @@ extension URLSession {
                 case .failure(let daysError):
                     return Observable.just(LoadDaysWithEventsResponse.failure(daysError))
                 }
-                
         }
         
     }
-    
-    
-    
-    
 }
