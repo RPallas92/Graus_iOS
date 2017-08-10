@@ -19,7 +19,7 @@ class AgendaViewController: UIViewController {
     
     private let disposeBag = DisposeBag()
     private let refreshControl = UIRefreshControl()
-    private let agendaDataSource = AgendaEventCloudDatasource()
+    private let agendaRepository = CachedAgendaEventRepository(dataSource: AgendaEventCloudDatasource())
     private let tableViewDataSource = RxTableViewSectionedAnimatedDataSource<AgendaEventsSection>()
 
 
@@ -50,7 +50,7 @@ class AgendaViewController: UIViewController {
                 // UI, user feedback
                 bindUI,
                 // NoUI, automatic feedback
-                AgendaListFeedback.shouldLoadDataReaction(agendaDataSource: self.agendaDataSource),
+                AgendaListFeedback.shouldLoadDataReaction(agendaRepository: self.agendaRepository),
                 AgendaListFeedback.selectedEventReaction(navigationController: navigationController),
                 AgendaListFeedback.loadEventsResponseReaction(refreshControl: self.refreshControl)
             )

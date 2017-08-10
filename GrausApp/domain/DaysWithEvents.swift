@@ -13,10 +13,10 @@ typealias DaysWithEvents = [Day:[AgendaEvent]]
 
 extension Dictionary where Key == Day, Value == Array<AgendaEvent> {
     
-    func toJsonDict() -> [String:[AgendaEvent]]{
-        var jsonDict = [String:[AgendaEvent]]()
+    func toJsonDict() -> [String:[[String: AnyObject]]]{
+        var jsonDict = [String:[[String: AnyObject]]]()
         for (day, agendaEvents) in self {
-            jsonDict[day.toString()] = agendaEvents
+            jsonDict[day.toString()] = AgendaEvent.toJsonDict(agendaEvents: agendaEvents)
         }
         return jsonDict
     }
@@ -24,7 +24,7 @@ extension Dictionary where Key == Day, Value == Array<AgendaEvent> {
     static func fromJsonDict(jsonDict: [String:Any]) -> DaysWithEvents{
         var dayWithEventsDict = DaysWithEvents()
         for (dayString, agendaEventsAny) in jsonDict {
-            let agendaEvents = agendaEventsAny as! [AgendaEvent]
+            let agendaEvents = agendaEventsAny as! [AgendaEvent] //TODO parse
             let day = Day.fromString(dateString: dayString)
             dayWithEventsDict[day] = agendaEvents
         }

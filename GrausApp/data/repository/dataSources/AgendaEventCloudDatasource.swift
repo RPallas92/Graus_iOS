@@ -10,7 +10,7 @@ import Foundation
 import RxSwift
 import RxCocoa
 
-class AgendaEventCloudDatasource {
+class AgendaEventCloudDatasource: AgendaEventDatasourceProtocol {
     let cacheDatasource = AgendaEventCacheDatasource()
     
     func loadDays() -> Observable<LoadDaysResponse> {
@@ -37,7 +37,13 @@ class AgendaEventCloudDatasource {
     }
     
     private func cacheDaysWithEvents(loadDaysWithEventsResponse: LoadDaysWithEventsResponse) -> LoadDaysWithEventsResponse {
-        cacheDatasource.insertDaysWithEvents(daysWithEventsResponse: loadDaysWithEventsResponse)
+        switch loadDaysWithEventsResponse {
+        case .success(_):
+            cacheDatasource.insertDaysWithEvents(daysWithEventsResponse: loadDaysWithEventsResponse)
+            break
+        case .failure(_):
+            break
+        }
         return loadDaysWithEventsResponse
     }
 }
@@ -51,6 +57,7 @@ extension URLSession {
             .rx.response(request: URLRequest(url: url))
             .retry(3)
             .map(Day.parse)
+            .catchErrorJustReturn(LoadDaysResponse.failure(.offline))
     }
     
     func loadAgendaEvents(day: Day) -> Observable<LoadAgendaEventsResponse>{
@@ -60,6 +67,8 @@ extension URLSession {
             .rx.response(request: URLRequest(url: url))
             .retry(3)
             .map(AgendaEvent.parse)
+            .catchErrorJustReturn(LoadAgendaEventsResponse.failure(.offline))
+
     }
     
     

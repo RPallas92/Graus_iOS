@@ -31,7 +31,11 @@ extension AgendaEvent {
         guard let items = json["eventos"] as? [[String: AnyObject]] else {
             throw SystemError("Can't find items")
         }
-        return try items.map { item in
+        return try parse(items)
+    }
+    
+    static func parse(_ json: [[String: AnyObject]]) throws -> [AgendaEvent] {
+        return try json.map { item in
             guard let eventId = item["idEvento"] as? String,
                 let name = item["nombre"] as? String,
                 let city = item["lugar"] as? String,
@@ -41,8 +45,8 @@ extension AgendaEvent {
                 let date = item["fecha"] as? String,
                 let parsedLat = Float.init(lat),
                 let parsedLon = Float.init(lon)
-
-            else {
+                
+                else {
                     throw SystemError("Can't parse AgendaEvent")
             }
             
@@ -50,13 +54,29 @@ extension AgendaEvent {
             let imageThumbnailUrl = item["thumbnail"] as? String
             
             let parsedDate = try parseDate(object: date)
-
+            
             
             
             return AgendaEvent(eventId: eventId, name: name, city: city, description: description, lat: parsedLat, lon: parsedLon, imageUrl: imageUrl, imageThumbnailUrl: imageThumbnailUrl, date: parsedDate)
         }
     }
     
+    static func toJsonDict(agendaEvents: [AgendaEvent]) -> [[String: AnyObject]] {
+        return agendaEvents.map { agendaEvent in
+            var jsonDict = [String: AnyObject]()
+            jsonDict["idEvento"] = agendaEvent.eventId as AnyObject
+            jsonDict["nombre"] = agendaEvent.name as AnyObject
+            jsonDict["lugar"] = agendaEvent.city as AnyObject
+            jsonDict["texto"] = agendaEvent.description as AnyObject
+            jsonDict["coornedadaX"] = String(agendaEvent.lat) as AnyObject
+            jsonDict["coornedadaY"] = String(agendaEvent.lon) as AnyObject
+            jsonDict["fecha"] = agendaEvent.date.toJsonString() as AnyObject
+            jsonDict["imagen"] = agendaEvent.imageUrl as AnyObject
+            jsonDict["thumbnail"] = agendaEvent.imageThumbnailUrl as AnyObject
+
+            return jsonDict
+        }
+    }
     
     
     private static func parseJSON(_ httpResponse: HTTPURLResponse, data: Data) throws -> AnyObject {
@@ -82,4 +102,4 @@ extension AgendaEvent {
         throw SystemError("Couldn't parse the date!")
     }
 }
-    
+

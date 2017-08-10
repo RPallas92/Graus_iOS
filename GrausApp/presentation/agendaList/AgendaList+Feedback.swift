@@ -14,13 +14,13 @@ import RxFeedback
 struct AgendaListFeedback {
     
     //Reactions
-    static func shouldLoadDataReaction(agendaDataSource: AgendaEventCloudDatasource) -> (Driver<AgendaListState>) -> Driver<AgendaListEvent> {
+    static func shouldLoadDataReaction(agendaRepository: AgendaEventRepositoryProtocol) -> (Driver<AgendaListState>) -> Driver<AgendaListEvent> {
         
         let query:(AgendaListState) -> Bool?
             = { $0.shouldLoadData }
         
         let effects:(Bool) -> Driver<AgendaListEvent>
-            = { shouldLoadDataEffects(shouldLoadData: $0, eventsDataSource: agendaDataSource) }
+            = { shouldLoadDataEffects(shouldLoadData: $0, agendaRepository: agendaRepository) }
         
         return react(query: query, effects: effects)
     }
@@ -52,9 +52,9 @@ struct AgendaListFeedback {
 
 
 //Effects
-fileprivate func shouldLoadDataEffects(shouldLoadData: Bool, eventsDataSource: AgendaEventCloudDatasource) -> Driver<AgendaListEvent>{
+fileprivate func shouldLoadDataEffects(shouldLoadData: Bool, agendaRepository: AgendaEventRepositoryProtocol) -> Driver<AgendaListEvent>{
     if(shouldLoadData){
-        return eventsDataSource.loadDaysWithEvents(day: Day.getToday())
+        return agendaRepository.loadDaysWithEvents(day: Day.getToday())
             .asDriver(onErrorJustReturn: .failure(.offline))
             .map(AgendaListEvent.response)
     } else {

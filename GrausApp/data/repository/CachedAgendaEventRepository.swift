@@ -11,8 +11,22 @@ import RxSwift
 
 class CachedAgendaEventRepository: AgendaEventRepository {
     
+    let cachedDatasource = AgendaEventCacheDatasource()
+    
     override func loadDays() -> Observable<LoadDaysResponse> {
         return super.loadDays()
+            .flatMap { loadDaysResponse -> Observable<LoadDaysResponse> in
+                switch loadDaysResponse{
+                case .success(_):
+                    return Observable.just(loadDaysResponse)
+                case .failure(let error):
+                    print(error)
+                    return self.cachedDatasource.loadDays()
+                }
+            }
+            .catchError { error in
+                return self.cachedDatasource.loadDays()
+        }
     }
     
     override func loadAgendaEvents(day: Day) -> Observable<LoadAgendaEventsResponse> {
@@ -21,5 +35,15 @@ class CachedAgendaEventRepository: AgendaEventRepository {
     
     override func loadDaysWithEvents(day: Day) -> Observable<LoadDaysWithEventsResponse> {
         return super.loadDaysWithEvents(day: day)
+            .flatMap { loadDaysWithEventsResponse -> Observable<LoadDaysWithEventsResponse> in
+                switch loadDaysWithEventsResponse{
+                case .success(_):
+                    return Observable.just(loadDaysWithEventsResponse)
+                case .failure(let error):
+                    print(error)
+                    return self.cachedDatasource.loadDaysWithEvents(day: day)
+                }
+            }
+        
     }
 }

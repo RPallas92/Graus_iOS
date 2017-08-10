@@ -101,7 +101,8 @@ class AgendaEventCacheDatasource: AgendaEventDatasourceProtocol {
         switch daysWithEventsResponse {
         case .success(let daysWithEvents):
             do {
-                try cache.addObject(JSON.dictionary(daysWithEvents.toJsonDict()), forKey: daysWithEventsKey)
+                let jsonDict = daysWithEvents.toJsonDict()
+                try cache.addObject(JSON.dictionary(jsonDict), forKey: daysWithEventsKey)
             } catch {
                 print("Cannot insert days in cache")
             }
