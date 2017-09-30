@@ -34,7 +34,8 @@ extension AgendaEvent {
         return try parse(items)
     }
     
-    static func parse(_ json: [[String: AnyObject]]) throws -> [AgendaEvent] {
+    
+    static func parse(_ json: [[String: Any]]) throws -> [AgendaEvent] {
         return try json.map { item in
             guard let eventId = item["idEvento"] as? String,
                 let name = item["nombre"] as? String,
@@ -68,8 +69,8 @@ extension AgendaEvent {
             jsonDict["nombre"] = agendaEvent.name as AnyObject
             jsonDict["lugar"] = agendaEvent.city as AnyObject
             jsonDict["texto"] = agendaEvent.description as AnyObject
-            jsonDict["coornedadaX"] = String(agendaEvent.lat) as AnyObject
-            jsonDict["coornedadaY"] = String(agendaEvent.lon) as AnyObject
+            jsonDict["coordenadaX"] = String(agendaEvent.lat) as AnyObject
+            jsonDict["coordenadaY"] = String(agendaEvent.lon) as AnyObject
             jsonDict["fecha"] = agendaEvent.date.toJsonString() as AnyObject
             jsonDict["imagen"] = agendaEvent.imageUrl as AnyObject
             jsonDict["thumbnail"] = agendaEvent.imageThumbnailUrl as AnyObject

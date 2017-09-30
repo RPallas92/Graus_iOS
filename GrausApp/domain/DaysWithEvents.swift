@@ -11,7 +11,7 @@ import Cache
 
 typealias DaysWithEvents = [Day:[AgendaEvent]]
 
-extension Dictionary where Key == Day, Value == Array<AgendaEvent> {
+extension Dictionary where Key == Day, Value == Array<AgendaEvent>{
     
     func toJsonDict() -> [String:[[String: AnyObject]]]{
         var jsonDict = [String:[[String: AnyObject]]]()
@@ -24,7 +24,8 @@ extension Dictionary where Key == Day, Value == Array<AgendaEvent> {
     static func fromJsonDict(jsonDict: [String:Any]) -> DaysWithEvents{
         var dayWithEventsDict = DaysWithEvents()
         for (dayString, agendaEventsAny) in jsonDict {
-            let agendaEvents = agendaEventsAny as! [AgendaEvent] //TODO parse
+            let items = agendaEventsAny as! [[String:Any]]
+            let agendaEvents = try! AgendaEvent.parse(items)
             let day = Day.fromString(dateString: dayString)
             dayWithEventsDict[day] = agendaEvents
         }
