@@ -98,7 +98,8 @@ extension URLSession {
                 
                 switch daysResponse {
                 case .success(let days):
-                    let nearestRange = getNearDaysRange(days: days, day: day)
+                    let theDayBefore = Day.getTheDayBefore(from: day)
+                    let nearestRange = getNearDaysRange(days: days, day: theDayBefore)
                     let eventsForEachDay = nearestRange.map { day in
                         return self.loadAgendaEvents(day: day)
                     }

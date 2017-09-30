@@ -12,6 +12,7 @@ import Cache
 typealias Day = Date
 
 extension Day {
+    
     func toString() -> String {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd"
@@ -34,6 +35,14 @@ extension Day {
         let date = Date()
         let cal = Calendar(identifier: .gregorian)
         return cal.startOfDay(for: date)
+    }
+    
+    static func getTheDayBefore(from day:Day) -> Day {
+        let date = Date()
+        let cal = Calendar(identifier: .gregorian)
+        let currentDay = cal.startOfDay(for: date)
+        let theDayBefore = cal.date(byAdding: .day, value: -1, to: currentDay)
+        return theDayBefore!
     }
     
     func toJsonString() -> String {
